@@ -42,7 +42,7 @@
                                     <td>{{ $product->origin_price }}</td>
                                     <td>{{ $product->sale_price }}</td>
                                     <td>{{ $product->discount_percent }}</td>
-                                    <td>{{ $product->content }}</td>
+                                    <td>{!! $product->content !!}</td>
                                     <td>
                                         <a href="">
                                             <button class="btn btn-primary">Chi tiết</button>

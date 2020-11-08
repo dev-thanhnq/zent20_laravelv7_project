@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
+use App\Models\Author;
+use App\Models\Category;
 use App\Models\Product;
+use App\Models\Publishing;
 use Illuminate\Http\Request;
 
 
@@ -29,7 +33,14 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.products.create');
+        $categories = Category::get();
+        $authors = Author::get();
+        $publishings = Publishing::get();
+        return view('backend.products.create')->with([
+            'categories' => $categories,
+            'authors' => $authors,
+            'publishings' => $publishings
+        ]);
     }
 
     /**
@@ -38,9 +49,25 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+
+        $product = new Product();
+        $product->name = $request->get('name');
+        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        $product->category_id = $request->get('category_id');
+        $product->author_id = $request->get('author_id');
+        $product->publishing_company_id = $request->get('publishing_company_id');
+        $product->origin_price = $request->get('origin_price');
+        $product->sale_price = $request->get('sale_price');
+        $product->discount_percent = $request->get('discount_percent');
+        $product->content = $request->get('content');
+        $product->status = $request->get('status');
+        $product->pages_count = '0';
+        $product->status = $request->get('status');
+        $product->save();
+
+        return redirect()->route('backend.product.index');
     }
 
     /**
@@ -62,7 +89,16 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $categories = Category::get();
+        $authors = Author::get();
+        $publishings = Publishing::get();
+        return view('backend.products.edit')->with([
+            'product' => $product,
+            'categories' => $categories,
+            'authors' => $authors,
+            'publishings' => $publishings
+        ]);
     }
 
     /**
@@ -72,9 +108,24 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->name = $request->get('name');
+        $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        $product->category_id = $request->get('category_id');
+        $product->author_id = $request->get('author_id');
+        $product->publishing_company_id = $request->get('publishing_company_id');
+        $product->origin_price = $request->get('origin_price');
+        $product->sale_price = $request->get('sale_price');
+        $product->discount_percent = $request->get('discount_percent');
+        $product->content = $request->get('content');
+        $product->status = $request->get('status');
+        $product->pages_count = '0';
+        $product->status = $request->get('status');
+        $product->save();
+
+        return redirect()->route('backend.product.index');
     }
 
     /**

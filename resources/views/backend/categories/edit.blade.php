@@ -9,7 +9,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Tạo sản phẩm</li>
+                    <li class="breadcrumb-item active">Chỉnh sửa sản phẩm</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,19 +24,22 @@
                 <!-- general form elements -->
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tạo danh mục</h3>
+                        <h3 class="card-title">Cập nhật danh mục</h3>
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{{ route('backend.category.store') }}">
+                    <form role="form" method="POST" action="{{ route('backend.category.update', $category_edit->id) }}">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Tên danh mục</label>
-                                <input type="text" class="form-control" id="" placeholder="Điền tên danh mục" name="name">
+                                <label for="exampleInputEmail1">Tên danh mục</label>
+                                <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm " name="name" value="{{ $category_edit->name }}">
+                                @error('name')
+                                <p style="color: #ff0000">*{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <label for="parent_id">Danh mục cha</label>
+                                <label>Danh mục cha</label>
                                 <select class="form-control select2" style="width: 100%;" name="category_id">
                                     <option value="">--Chọn danh mục---</option>
                                     <option value="0">NULL</option>
@@ -44,12 +47,15 @@
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
+                                @error('parent_id')
+                                <p style="color: red">*{{ $message }}</p>
+                                @enderror
                             </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-danger">Huỷ bỏ</button>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
+                            <button type="reset" class="btn btn-danger">Huỷ bỏ</button>
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
                         </div>
                     </form>
                 </div>

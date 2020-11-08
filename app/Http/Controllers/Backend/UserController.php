@@ -10,7 +10,9 @@ use App\Models\UserInfo;
 use App\Models\Order;
 use Database\Seeders\CategoriesTableSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Routing\UrlGenerator;
 
 class UserController extends Controller
 {
@@ -129,9 +131,11 @@ class UserController extends Controller
 //            'rate' => 0,
 //        ]);
 
-        $order_id = 1;
-        $order = Order::find(1);
-        $product_id = 3;
-        $order->products()->attach($product_id);
+//        $order_id = 1;
+//        $order = Order::find(1);
+//        $product_id = 3;
+//        $order->products()->attach($product_id);
+
+        echo url()->previous();
     }
 }

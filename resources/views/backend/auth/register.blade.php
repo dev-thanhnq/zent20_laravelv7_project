@@ -34,7 +34,7 @@
                 <h2 class="title">Đăng kí tài khoản</h2>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('register.store') }}">
                     @csrf
                     <div class="form-row">
                         <div class="name">Họ tên</div>

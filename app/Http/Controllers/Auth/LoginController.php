@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -40,6 +41,24 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
+        return view('backend.auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $email = $request->get('email');
+        $password = $request->get('password');
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
+            if(Auth::user()->role == 1) {
+                return redirect()->intended('/admin/dashboard');
+            } elseif (Auth::user()->role == 2) {
+                return redirect()->intended('frontend.home');
+            }
+        }
+    }
+
+    public function logout() {
+        Auth::logout();
         return view('backend.auth.login');
     }
 }

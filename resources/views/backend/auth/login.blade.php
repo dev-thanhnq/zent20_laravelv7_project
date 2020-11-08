@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V4</title>
+    <title>Bookcloud</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -32,7 +32,7 @@
 <div class="limiter">
     <div class="container-login100" style="background: #f8694a;"">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
-            <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
+            <form class="login100-form validate-form" method="POST" action="{{ route('login.store') }}">
                 @csrf
 					<span class="login100-form-title p-b-49 ">
 						Đăng nhập

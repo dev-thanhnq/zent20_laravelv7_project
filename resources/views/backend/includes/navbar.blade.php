@@ -118,17 +118,18 @@
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-user"></i>
+                <i class="fa fa-cog" aria-hidden="true"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                    <i class="fa-sign-out mr-2"></i> Cài đặt
+                    <i class="fa fa-user" aria-hidden="true"></i> Cài đặt tài khoản
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                    <i class=" mr-2"></i> Đăng xuất
-                </a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="dropdown-item"><i class="fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</button>
+                </form>
             </div>
         </li>
     </ul>

@@ -9,7 +9,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Tạo sản phẩm</li>
+                    <li class="breadcrumb-item active">Chỉnh sửa sản phẩm</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -28,23 +28,14 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{{ route('backend.product.store') }}">
+                    <form role="form" method="POST" action="{{ route('backend.product.update', $product->id) }}">
                         @csrf
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm " name="name">
+                                <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm " name="name" value="{{ $product->name }}">
                                 @error('name')
-                                <p style="color: red">*{{ $message }}</p>
+                                <p style="color: #ff0000">*{{ $message }}</p>
                                 @enderror
                             </div>
                             <div class="form-group">
@@ -87,7 +78,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Giá khuyến mại</label>
-                                        <input type="text" class="form-control" placeholder="Điền giá khuyến mại" name="sale_price">
+                                        <input type="text" class="form-control" placeholder="Điền giá khuyến mại" name="sale_price" value="{{ $product->sale_price }}">
                                         @error('sale_price')
                                         <p style="color: red">*{{ $message }}</p>
                                         @enderror
@@ -96,7 +87,7 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>Giá bán</label>
-                                        <input type="text" class="form-control" placeholder="Điền giá gốc" name="origin_price">
+                                        <input type="text" class="form-control" placeholder="Điền giá gốc" name="origin_price" value="{{ $product->origin_price }}">
                                         @error('origin_price')
                                         <p style="color: red">*{{ $message }}</p>
                                         @enderror
@@ -105,14 +96,14 @@
                                 <div class="col-4">
                                     <div class="form-group">
                                         <label>% giảm giá</label>
-                                        <input type="text" class="form-control" placeholder="%" name="discount_percent">
+                                        <input type="text" class="form-control" placeholder="%" name="discount_percent" value="{{ $product->discount_percent }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                                 <textarea class="textarea" placeholder="Place some text here"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="content"></textarea>
+                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="content">{{ $product->content }}</textarea>
                                 @error('content')
                                 <p style="color: red">*{{ $message }}</p>
                                 @enderror
@@ -146,7 +137,7 @@
 
                         <div class="card-footer">
                             <button type="reset" class="btn btn-danger">Huỷ bỏ</button>
-                            <button type="submit" class="btn btn-success">Tạo mới</button>
+                            <button type="submit" class="btn btn-success">Cập nhật</button>
                         </div>
                     </form>
                 </div>
