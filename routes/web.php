@@ -27,6 +27,7 @@ Route::group([
     ], function (){
         // Trang dashboard - trang chủ admin
         Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard')->middleware('auth');
+        Route::get('/test', 'DashboardController@test');
         // Quản lý sản phẩm
         Route::group(['prefix' => 'products'], function(){
             Route::get('/', 'ProductController@index')->name('backend.product.index')->middleware('auth');

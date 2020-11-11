@@ -40,11 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Danh mục cha</label>
-                                <select class="form-control select2" style="width: 100%;" name="category_id">
+                                <select class="form-control select2" style="width: 100%;" name="parent_id">
                                     <option value="">--Chọn danh mục---</option>
                                     <option value="0">NULL</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" @if($category->id == $category_edit->parent_id) selected @endif>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('parent_id')
@@ -53,9 +53,10 @@
                             </div>
                         <!-- /.card-body -->
 
-                        <div class="card-footer">
-                            <button type="reset" class="btn btn-danger">Huỷ bỏ</button>
-                            <button type="submit" class="btn btn-success">Cập nhật</button>
+                            <div class="card-footer">
+                                <button type="reset" class="btn btn-danger">Huỷ bỏ</button>
+                                <button type="submit" class="btn btn-success">Cập nhật</button>
+                            </div>
                         </div>
                     </form>
                 </div>

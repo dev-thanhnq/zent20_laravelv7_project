@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
 {
@@ -81,5 +82,19 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function test()
+    {
+//        Storage::disk('public')->put('file.txt', 'Contents');
+//        Storage::disk('local2')->put('file.txt', 'Contents');
+//        $contents = Storage::get('file.txt');
+//        $exists = Storage::disk('local')->exists('file.txt');
+//        return Storage::download('file.txt');
+//        $url = Storage::disk('public')->url('file.txt');
+//        Storage::copy('file.txt', 'new/file1.txt');
+//        Storage::move('file3.txt', 'new/file2.txt');
+        Storage::delete(['new/file1.txt', 'new/file2.txt']);
+//        dd($url);
     }
 }

@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Models\Author;
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Product;
 use App\Models\Publishing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
@@ -51,7 +53,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-
         $product = new Product();
         $product->name = $request->get('name');
         $product->slug = \Illuminate\Support\Str::slug($request->get('name'));
@@ -66,7 +67,20 @@ class ProductController extends Controller
         $product->pages_count = '0';
         $product->status = $request->get('status');
         $product->save();
-
+        if ($request->hasFile('images')){
+            $files = $request->file('images');
+            foreach ($files as $file) {
+                $path = Storage::disk('public')
+                    ->putFileAs('images', $file, $file->getClientOriginalName());
+                $image = new Image();
+                $image->name = $file->getClientOriginalName();
+                $image->path = $path;
+                $image->product_id = $product->id;
+                $image->save();
+            }
+        }else{
+            dd('khong co file');
+        }
         return redirect()->route('backend.product.index');
     }
 

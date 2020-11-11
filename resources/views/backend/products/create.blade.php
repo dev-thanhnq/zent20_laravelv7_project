@@ -28,18 +28,9 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form role="form" method="POST" action="{{ route('backend.product.store') }}">
+                    <form role="form" method="POST" action="{{ route('backend.product.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
                                 <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm " name="name">
@@ -121,13 +112,16 @@
                                 <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="images[]" multiple>
                                         <label class="custom-file-label" for="exampleInputFile">Chọn tệp</label>
                                     </div>
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="">Upload</span>
                                     </div>
                                 </div>
+                                @error('images')
+                                <p style="color: red">*{{ $message }}</p>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái sản phẩm</label>

@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Tạo sản phẩm</h1>
+                <h1 class="m-0 text-dark">Chỉnh sửa sản phẩm</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -23,9 +23,6 @@
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Tạo sản phẩm</h3>
-                    </div>
                     <!-- /.card-header -->
                     <!-- form start -->
                     <form role="form" method="POST" action="{{ route('backend.product.update', $product->id) }}">
@@ -43,6 +40,9 @@
                                 <select class="form-control select2" style="width: 100%;" name="category_id">
                                     <option value="">--Chọn danh mục---</option>
                                     @foreach($categories as $category)
+                                        @if($category->id == $product->category_id)
+                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                        @endif
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
@@ -55,7 +55,10 @@
                                 <select class="form-control select2" style="width: 100%;" name="author_id">
                                     <option value="">--Chọn tác giả---</option>
                                     @foreach($authors as $author)
-                                        <option value="{{ $author->id }}">{{ $author->name }}</option>
+                                        @if($author->id == $product->author_id)
+                                            <option value="{{ $author->id }}" selected>{{ $author->name }}</option>
+                                        @endif
+                                            <option value="{{ $author->id }}">{{ $author->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('author_id')
@@ -67,7 +70,10 @@
                                 <select class="form-control select2" style="width: 100%;" name="publishing_company_id">
                                     <option value="">--Chọn NXB---</option>
                                     @foreach($publishings as $publishing)
-                                        <option value="{{ $publishing->id }}">{{ $publishing->name }}</option>
+                                        @if($publishing->id == $product->publishing_company_id)
+                                            <option value="{{ $publishing->id }}" selected>{{ $publishing->name }}</option>
+                                        @endif
+                                            <option value="{{ $publishing->id }}">{{ $publishing->name }}</option>
                                     @endforeach
                                 </select>
                                 @error('publishing_company_id')
@@ -124,9 +130,10 @@
                                 <label>Trạng thái sản phẩm</label>
                                 <select class="form-control select2" style="width: 100%;" name="status">
                                     <option value="">--Chọn trạng thái---</option>
-                                    <option value="0">Đang nhập</option>
-                                    <option value="1">Mở bán</option>
-                                    <option value="2">Hết hàng</option>
+                                    <option value="0" @if($product->status == 0) selected @endif>Còn hàng</option>
+                                    <option value="1" @if($product->status == 1) selected @endif>Hết hàng</option>
+                                    <option value="2" @if($product->status == 2) selected @endif>Dừng bán</option>
+                                    <option value="3" @if($product->status == 3) selected @endif>Đang nhập</option>
                                 </select>
                                 @error('status')
                                 <p style="color: red">*{{ $message }}</p>
