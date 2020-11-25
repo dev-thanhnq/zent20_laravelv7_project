@@ -49,12 +49,13 @@ class LoginController extends Controller
         $email = $request->get('email');
         $password = $request->get('password');
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
-            if(Auth::user()->role == 1) {
+            if(Auth::user()->role == 1 || Auth::user()->role == 0) {
                 return redirect()->intended('/admin/dashboard');
             } elseif (Auth::user()->role == 2) {
                 return redirect()->intended('frontend.home');
             }
         }
+
     }
 
     public function logout() {

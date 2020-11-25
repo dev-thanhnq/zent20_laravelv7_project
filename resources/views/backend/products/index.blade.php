@@ -44,12 +44,12 @@
                                     <td>{{ $product->discount_percent }}</td>
                                     <td>{!! $product->content !!}</td>
                                     <td>
-                                        <a href="">
-                                            <button class="btn btn-primary">Chi tiết</button>
-                                        </a>
-                                        <a href="">
+                                        <form action="{{ route('backend.product.destroy', $product->id) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <a href="{{ route('backend.product.show', $product->id) }}" class="btn btn-primary">Chi tiêt</a>
                                             <button class="btn btn-danger">Xóa</button>
-                                        </a>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

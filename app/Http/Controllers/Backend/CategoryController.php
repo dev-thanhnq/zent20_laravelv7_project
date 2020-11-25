@@ -63,7 +63,8 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        dd($category);
     }
 
     /**
@@ -108,7 +109,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('backend.category.index');
     }
 
     public function showProducts($category_id)

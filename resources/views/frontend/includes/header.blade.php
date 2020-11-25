@@ -1,9 +1,10 @@
+@dd($listCategories)
 <header>
     <!-- top Header -->
     <div id="top-header">
         <div class="container">
             <div class="pull-left">
-                <span>Welcome to E-shop!</span>
+                <span>Welcome to Bookcloud!</span>
             </div>
             <div class="pull-right">
                 <ul class="header-top-links">

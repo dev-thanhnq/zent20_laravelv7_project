@@ -10,7 +10,9 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\Publishing;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 
 class ProductController extends Controller
@@ -35,14 +37,20 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::get();
-        $authors = Author::get();
-        $publishings = Publishing::get();
-        return view('backend.products.create')->with([
-            'categories' => $categories,
-            'authors' => $authors,
-            'publishings' => $publishings
-        ]);
+        $user = Auth::user();
+        $product = new Product();
+        if ($user->can('create', $product)) {
+            $categories = Category::get();
+            $authors = Author::get();
+            $publishings = Publishing::get();
+            return view('backend.products.create')->with([
+                'categories' => $categories,
+                'authors' => $authors,
+                'publishings' => $publishings
+            ]);
+        } else {
+            return view('backend.includes.incompetent');
+        }
     }
 
     /**
@@ -92,7 +100,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        $product = Product::find($id);
+        if ($user->can('view', $product)) {
+            dd($product);
+        } else {
+            return view('backend.includes.incompetent');
+        }
     }
 
     /**
@@ -104,15 +118,20 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $categories = Category::get();
-        $authors = Author::get();
-        $publishings = Publishing::get();
-        return view('backend.products.edit')->with([
-            'product' => $product,
-            'categories' => $categories,
-            'authors' => $authors,
-            'publishings' => $publishings
-        ]);
+        $user = Auth::user();
+        if ($user->can('update', $product)) {
+            $categories = Category::get();
+            $authors = Author::get();
+            $publishings = Publishing::get();
+            return view('backend.products.edit')->with([
+                'product' => $product,
+                'categories' => $categories,
+                'authors' => $authors,
+                'publishings' => $publishings
+            ]);
+        } else {
+            dd('khong');
+        }
     }
 
     /**
@@ -150,7 +169,14 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = Auth::user();
+        $product = Product::find($id);
+        if ($user->can('delete', $product)) {
+            $product->delete();
+            return redirect()->route('backend.product.index');
+        } else {
+            return view('backend.includes.incompetent');
+        }
     }
 
     public function showImages($id)

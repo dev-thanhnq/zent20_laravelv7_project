@@ -37,7 +37,7 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>5300</h3>
+                        <h3>{{ $count_products }}</h3>
 
                         <p>Sản phẩm</p>
                     </div>
@@ -52,7 +52,7 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3>44</h3>
+                        <h3>{{ $count_users }}</h3>
 
                         <p>Người dùng</p>
                     </div>

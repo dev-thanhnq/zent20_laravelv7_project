@@ -32,7 +32,7 @@ class StoreProductRequest extends FormRequest
             'origin_price' => 'required|min:sale_price',
             'discount_percent' => '',
             'content' => 'required|min:5|max:255',
-//            'images' => 'image|mimes:jpg,png,jpeg,gif,svg|required|max:10000',
+            'images[]' => 'image|mimes:jpg,png,jpeg,gif,svg|required|max:10000',
             'status' => 'required'
         ];
     }

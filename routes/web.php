@@ -23,11 +23,13 @@ Route::group([
     'prefix' => 'admin'
 ], function (){
     Route::group([
-        'namespace' => 'Backend'
+        'namespace' => 'Backend',
+        'middleware' => ['auth', 'auth_admin']
     ], function (){
         // Trang dashboard - trang chủ admin
         Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard')->middleware('auth');
         Route::get('/test', 'DashboardController@test');
+        Route::get('/incompetent', 'DashboardController@incompetent')->name('backend.incompetent');
         // Quản lý sản phẩm
         Route::group(['prefix' => 'products'], function(){
             Route::get('/', 'ProductController@index')->name('backend.product.index')->middleware('auth');
@@ -37,6 +39,8 @@ Route::group([
             Route::get('/{id?}/productsCategory', [\App\Http\Controllers\Backend\CategoryController::class, 'showProducts'])->name('backend.product.productsCategory')->middleware('auth');
             Route::get('/{id?}/edit', 'ProductController@edit')->name('backend.product.edit')->middleware('auth');
             Route::post('/{id?}/update', 'ProductController@update')->name('backend.product.update')->middleware('auth');
+            Route::delete('/{id}/delete', 'ProductController@destroy')->name('backend.product.destroy');
+            Route::get('/{id?}/show', 'ProductController@show')->name('backend.product.show');
         });
         //Quản lý người dùng
         Route::group(['prefix' => 'users'], function(){
@@ -51,6 +55,8 @@ Route::group([
             Route::post('/store', 'CategoryController@store')->name('backend.category.store')->middleware('auth');
             Route::get('/{id?}/edit', 'CategoryController@edit')->name('backend.category.edit')->middleware('auth');
             Route::post('/{id}/update', 'CategoryController@update')->name('backend.category.update')->middleware('auth');
+            Route::delete('/{id}/delete', 'CategoryController@destroy')->name('backend.category.destroy');
+            Route::get('/{id}/show', 'CategoryController@show')->name('backend.category.show');
         });
         //Quản lí tác giả
         Route::group(['prefix' => 'authors'], function(){
@@ -65,6 +71,8 @@ Route::group([
 ], function (){
     //Trang trủ website
     Route::get('/', [\App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('frontend.home.index');
+    //Danh sach san pham
+    Route::get('/products-page', 'ProductPageController@index')->name('frontend.product-page.index');
 });
 
 //Auth::routes();

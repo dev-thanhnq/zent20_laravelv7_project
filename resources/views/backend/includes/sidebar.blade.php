@@ -24,24 +24,53 @@
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview menu-open">
-                    <a href="#" class="nav-link active">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
                         <p>
-                            Dashboard
+                            Quản lí sản phẩm
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('backend.product.index') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách sản phẩm</p>
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p> Danh sách sản phẩm</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('backend.product.create') }}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-plus-circle nav-icon"></i>
                                 <p>Thêm mới sản phẩm</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./index3.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dashboard v3</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Quản lí danh mục
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.category.index') }}" class="nav-link">
+                                <i class="far fa-list-alt nav-icon"></i>
+                                <p> Tất cả thể loại</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('backend.category.create') }}" class="nav-link">
+                                <i class="fa fa-plus-circle nav-icon"></i>
+                                <p> Tạo thể loại mới</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -12,6 +12,7 @@
 
 @section('content')
     <!-- HOME -->
+{{--    @dd($listCategories)--}}
     <div id="home">
         <!-- container -->
         <div class="container">
@@ -150,7 +151,7 @@
                                         <li><span>00 S</span></li>
                                     </ul>
                                     <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                    <img src="/frontend/img/product01.jpg" alt="">
+                                    <img src="/frontend/img/conan.jpeg" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
@@ -183,7 +184,7 @@
                                         <li><span>00 S</span></li>
                                     </ul>
                                     <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                    <img src="/frontend/img/product07.jpg" alt="">
+                                    <img src="/frontend/img/conan.jpeg" alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
