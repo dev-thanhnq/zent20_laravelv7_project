@@ -1,4 +1,23 @@
 @extends('backend.layouts.master')
+@section('script')
+{{--<script>--}}
+{{--    $(document).ready(function () {--}}
+{{--        $('#productsTable').DataTable({--}}
+{{--            dom: 'lifrtp',--}}
+{{--            processing: true,--}}
+{{--            serverSide: true,--}}
+{{--            ajax: '/admin/products/get-data',--}}
+{{--            columns: [--}}
+{{--                { data: 'DT_RowIndex', searchable: false},--}}
+{{--                { data: 'name', name: 'product_name', searchable: true},--}}
+{{--                { data: 'category_id', name: 'category_name'},--}}
+{{--                { data: 'content', name: 'product_content'},--}}
+{{--                { data: 'action', name: 'product_action'}--}}
+{{--            ]--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
+@endsection
 @section('header-content')
     <div class="container-fluid">
         <div class="row mb-2">
@@ -15,17 +34,19 @@
     </div><!-- /.container-fluid -->
 @endsection
 @section('content')
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="productsTable" class="table table-bordered table-striped" style="width: 100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Thể loại</th>
+                                <th>Ảnh</th>
                                 <th>Giá gốc</th>
                                 <th>Giá bán</th>
                                 <th>Giảm giá(%)</th>
@@ -39,6 +60,7 @@
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->category->name }}</td>
+                                    <td><center><img src="/storage/{{ $product->image }}" alt="" style="width: 150px"></center></td>
                                     <td>{{ $product->origin_price }}</td>
                                     <td>{{ $product->sale_price }}</td>
                                     <td>{{ $product->discount_percent }}</td>

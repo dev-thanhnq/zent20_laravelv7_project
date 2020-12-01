@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use Yajra\DataTables\DataTables;
 
 
 class ProductController extends Controller
@@ -69,11 +70,18 @@ class ProductController extends Controller
         $product->publishing_company_id = $request->get('publishing_company_id');
         $product->origin_price = $request->get('origin_price');
         $product->sale_price = $request->get('sale_price');
-        $product->discount_percent = $request->get('discount_percent');
+        if ($request->get('discount_percent')) $product->discount_percent = $request->get('discount_percent');
+        else $product->discount_percent = 0;
         $product->content = $request->get('content');
+        if ($request->hasFile('image')){
+            $image = $request->file('image');
+            $path = Storage::disk('public')->putFileAs('images', $image, $image->getClientOriginalName());
+            $product->image = $path;
+        }
         $product->status = $request->get('status');
         $product->pages_count = '0';
         $product->status = $request->get('status');
+        $product->user_id = Auth::user()->id;
         $product->save();
         if ($request->hasFile('images')){
             $files = $request->file('images');
@@ -86,8 +94,6 @@ class ProductController extends Controller
                 $image->product_id = $product->id;
                 $image->save();
             }
-        }else{
-            dd('khong co file');
         }
         return redirect()->route('backend.product.index');
     }
@@ -171,9 +177,16 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $product = Product::find($id);
+        $images = $product->images;
         if ($user->can('delete', $product)) {
             $product->delete();
-            return redirect()->route('backend.product.index');
+            if (isset($images)) {
+                foreach ($images as $image) {
+                    $image->delete();
+                }
+            };
+            return back();
+//            return redirect()->route('backend.product.index');
         } else {
             return view('backend.includes.incompetent');
         }
@@ -186,4 +199,17 @@ class ProductController extends Controller
             echo $image->name . '<br>';
         }
     }
+
+//    public function getData()
+//    {
+//        $products = Product::all();
+//
+//        return DataTables::of($products)
+//            ->addColumn('action', function ($product) {
+//                return '<a href="" class="btn btn-primary">Chi tiêt</a>';
+//            })
+//            ->addIndexColumn()
+//            ->rawColumns(['action'])
+//            ->make(true);
+//    }
 }

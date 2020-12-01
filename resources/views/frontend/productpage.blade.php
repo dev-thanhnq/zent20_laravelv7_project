@@ -4,10 +4,10 @@
     <div id="breadcrumb">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Category</a></li>
-                <li class="active">Product Name Goes Here</li>
+                <li><a href="#">Trang trủ</a></li>
+                <li><a href="#">Sản phảm</a></li>
+                <li><a href="#">Danh mục</a></li>
+                <li class="active">{{ $product->name }}</li>
             </ul>
         </div>
     </div>
@@ -26,7 +26,7 @@
                     <div class="col-md-6">
                         <div id="product-main-view">
                             <div class="product-view">
-                                <img src="/frontend/img/main-product01.jpg" alt="">
+                                <img src="/storage/{{ $product->image }}" alt="">
                             </div>
                             <div class="product-view">
                                 <img src="/frontend/img/main-product02.jpg" alt="">
@@ -96,7 +96,7 @@
                                     <span class="text-uppercase">QTY: </span>
                                     <input class="input" type="number">
                                 </div>
-                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                <a href="{{ route('frontend.cart.add', 1) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
                                 <div class="pull-right">
                                     <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                                     <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
@@ -213,14 +213,10 @@
                                             </form>
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /Product Details -->
             </div>

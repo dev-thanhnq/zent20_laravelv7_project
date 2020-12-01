@@ -112,6 +112,21 @@
                                 <label for="exampleInputFile">Hình ảnh sản phẩm</label>
                                 <div class="input-group">
                                     <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
+                                        <label class="custom-file-label" for="exampleInputFile">Chọn tệp</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="">Upload</span>
+                                    </div>
+                                </div>
+                                @error('image')
+                                <p style="color: red">*{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputFile">Hình ảnh liên quan</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="exampleInputFile" name="images[]" multiple>
                                         <label class="custom-file-label" for="exampleInputFile">Chọn tệp</label>
                                     </div>

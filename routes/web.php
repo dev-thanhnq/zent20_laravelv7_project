@@ -27,41 +27,42 @@ Route::group([
         'middleware' => ['auth', 'auth_admin']
     ], function (){
         // Trang dashboard - trang chủ admin
-        Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard')->middleware('auth');
+        Route::get('/dashboard', 'DashboardController@index')->name('backend.dashboard');
         Route::get('/test', 'DashboardController@test');
         Route::get('/incompetent', 'DashboardController@incompetent')->name('backend.incompetent');
         // Quản lý sản phẩm
         Route::group(['prefix' => 'products'], function(){
-            Route::get('/', 'ProductController@index')->name('backend.product.index')->middleware('auth');
-            Route::get('/create', [\App\Http\Controllers\Backend\ProductController::class, 'create'])->name('backend.product.create')->middleware('auth');
-            Route::post('/store', [\App\Http\Controllers\Backend\ProductController::class, 'store'])->name('backend.product.store')->middleware('auth');
-            Route::get('/{id?}/showImages', [\App\Http\Controllers\Backend\ProductController::class, 'showImages'])->name('backend.product.showImages')->middleware('auth');
-            Route::get('/{id?}/productsCategory', [\App\Http\Controllers\Backend\CategoryController::class, 'showProducts'])->name('backend.product.productsCategory')->middleware('auth');
-            Route::get('/{id?}/edit', 'ProductController@edit')->name('backend.product.edit')->middleware('auth');
-            Route::post('/{id?}/update', 'ProductController@update')->name('backend.product.update')->middleware('auth');
+            Route::get('/', 'ProductController@index')->name('backend.product.index');
+//            Route::get('/get-data', 'ProductController@getData')->name('backend.product.index');
+            Route::get('/create', [\App\Http\Controllers\Backend\ProductController::class, 'create'])->name('backend.product.create');
+            Route::post('/store', [\App\Http\Controllers\Backend\ProductController::class, 'store'])->name('backend.product.store');
+            Route::get('/{id?}/edit', 'ProductController@edit')->name('backend.product.edit');
+            Route::post('/{id?}/update', 'ProductController@update')->name('backend.product.update');
             Route::delete('/{id}/delete', 'ProductController@destroy')->name('backend.product.destroy');
             Route::get('/{id?}/show', 'ProductController@show')->name('backend.product.show');
         });
         //Quản lý người dùng
         Route::group(['prefix' => 'users'], function(){
-            Route::get('/', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('backend.user.index')->middleware('auth');
-            Route::get('/create', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('backend.user.create')->middleware('auth');
-            Route::get('/test', [\App\Http\Controllers\Backend\UserController::class, 'test'])->name('backend.user.test')->middleware('auth');
+            Route::get('/', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('backend.user.index');
+            Route::get('/create', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('backend.user.create');
+            Route::get('/test', [\App\Http\Controllers\Backend\UserController::class, 'test'])->name('backend.user.test');
         });
         //Quản lí thể loại
         Route::group(['prefix' => 'categories'], function(){
-            Route::get('/', 'CategoryController@index')->name('backend.category.index')->middleware('auth');
-            Route::get('/create', 'CategoryController@create')->name('backend.category.create')->middleware('auth');
-            Route::post('/store', 'CategoryController@store')->name('backend.category.store')->middleware('auth');
-            Route::get('/{id?}/edit', 'CategoryController@edit')->name('backend.category.edit')->middleware('auth');
-            Route::post('/{id}/update', 'CategoryController@update')->name('backend.category.update')->middleware('auth');
+            Route::get('/', 'CategoryController@index')->name('backend.category.index');
+            Route::get('/create', 'CategoryController@create')->name('backend.category.create');
+            Route::post('/store', 'CategoryController@store')->name('backend.category.store');
+            Route::get('/{id?}/edit', 'CategoryController@edit')->name('backend.category.edit');
+            Route::post('/{id}/update', 'CategoryController@update')->name('backend.category.update');
             Route::delete('/{id}/delete', 'CategoryController@destroy')->name('backend.category.destroy');
             Route::get('/{id}/show', 'CategoryController@show')->name('backend.category.show');
         });
         //Quản lí tác giả
         Route::group(['prefix' => 'authors'], function(){
-//        Route::get('/', [\App\Http\Controllers\Backend\CategoryController::class, 'index'])->name('backend.categories.index')->middleware('auth');
-            Route::get('/{id?}/products', [\App\Http\Controllers\Backend\AuthorController::class, 'showProducts'])->name('backend.authors.showProducts')->middleware('auth');
+            Route::get('/', 'AuthorController@index')->name('backend.authors.index');
+            Route::get('/create', 'AuthorController@create')->name('backend.authors.create');
+            Route::post('/store', 'AuthorController@store')->name('backend.authors.store');
+            Route::delete('/{author}/delete', 'AuthorController@destroy')->name('backend.authors.destroy');
         });
     });
 });
@@ -71,8 +72,14 @@ Route::group([
 ], function (){
     //Trang trủ website
     Route::get('/', [\App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('frontend.home.index');
+    //Chi tiết sản phẩm
+    Route::get('/product-page/{slug}', 'ProductController@show')->name('frontend.product-page.index');
     //Danh sach san pham
-    Route::get('/products-page', 'ProductPageController@index')->name('frontend.product-page.index');
+    Route::get('/products', 'ProductController@index')->name('frontend.product.index');
+    //Giỏ hàng
+    Route::get('/cart/list', 'CartController@index')->name('frontend.cart.index');
+    Route::get('/cart/add/{id}', 'CartController@add')->name('frontend.cart.add');
+    Route::get('/cart/remove/{id}', 'CartController@remove')->name('frontend.cart.remove');
 });
 
 //Auth::routes();

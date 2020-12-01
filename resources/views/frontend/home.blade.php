@@ -123,19 +123,11 @@
                 <!-- /section-title -->
 
                 <!-- banner -->
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="banner banner-2">
-                        <img src="/frontend/img/banner14.jpg" alt="">
-                        <div class="banner-caption">
-                            <h2 class="white-color">NEW<br>COLLECTION</h2>
-                            <button class="primary-btn">Shop Now</button>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- /banner -->
 
                 <!-- Product Slick -->
-                <div class="col-md-9 col-sm-6 col-xs-6">
+                <div class="col-md-12 col-sm-6 col-xs-6">
                     <div class="row">
                         <div id="product-slick-1" class="product-slick">
                             <!-- Product Single -->
@@ -505,131 +497,213 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h2 class="title">Latest Products</h2>
+                        <h2 class="title">Manga bán chạy</h2>
                     </div>
                 </div>
                 <!-- section title -->
 
-                <!-- Product Single -->
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product product-single">
-                        <div class="product-thumb">
-                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                            <img src="/frontend/img/product01.jpg" alt="">
-                        </div>
-                        <div class="product-body">
-                            <h3 class="product-price">$32.50</h3>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
+{{--                <!-- Product Single -->--}}
+{{--                <div class="col-md-2 col-sm-4 col-xs-6">--}}
+{{--                    <div class="product product-single">--}}
+{{--                        <div class="product-thumb">--}}
+{{--                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>--}}
+{{--                            <img src="/frontend/img/conan.jpeg" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="product-body">--}}
+{{--                            <h3 class="product-price">$32.50</h3>--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o empty"></i>--}}
+{{--                            </div>--}}
+{{--                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                            <div class="product-btns">--}}
+{{--                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- /Product Single -->--}}
+                @foreach($products as $product)
+                    <div class="col-md-2 col-sm-4 col-xs-6">
+                        <div class="product product-single">
+                            <div class="product-thumb">
+                                <div class="product-label">
+                                    @if($product->discount_percent)
+                                        <span class="sale">-{{ $product->discount_percent }}%</span>
+                                    @endif
+                                </div>
+                                <a href="{{ route('frontend.product-page.index', $product->slug) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Xem</a>
+                                <img src="/storage/{{ $product->image }}" alt="">
                             </div>
-                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                            <div class="product-btns">
-                                <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                            <div class="product-body">
+                                <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
+                                <h4 class="product-price" style="color: #F8694A">{{ $product->sale_price }}đ</h4>
+{{--                                <div class="product-rating">--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star"></i>--}}
+{{--                                    <i class="fa fa-star-o empty"></i>--}}
+{{--                                </div>--}}
+                                <div class="product-btns">
+                                    <a href="{{ route('frontend.cart.add', $product->id) }}" class="primary-btn add-to-cart" style="text-align: center"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- /Product Single -->
+                @endforeach
+{{--                <!-- Product Single -->--}}
+{{--                <div class="col-md-2 col-sm-4 col-xs-6">--}}
+{{--                    <div class="product product-single">--}}
+{{--                        <div class="product-thumb">--}}
+{{--                            <div class="product-label">--}}
+{{--                                <span>New</span>--}}
+{{--                                <span class="sale">-20%</span>--}}
+{{--                            </div>--}}
+{{--                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>--}}
+{{--                            <img src="/frontend/img/conan.jpeg" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="product-body">--}}
+{{--                            <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o empty"></i>--}}
+{{--                            </div>--}}
+{{--                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                            <div class="product-btns">--}}
+{{--                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- /Product Single -->--}}
 
-                <!-- Product Single -->
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product product-single">
-                        <div class="product-thumb">
-                            <div class="product-label">
-                                <span>New</span>
-                                <span class="sale">-20%</span>
-                            </div>
-                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                            <img src="/frontend/img/product02.jpg" alt="">
-                        </div>
-                        <div class="product-body">
-                            <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                            </div>
-                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                            <div class="product-btns">
-                                <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Single -->
+{{--                <!-- Product Single -->--}}
+{{--                <div class="col-md-2 col-sm-4 col-xs-6">--}}
+{{--                    <div class="product product-single">--}}
+{{--                        <div class="product-thumb">--}}
+{{--                            <div class="product-label">--}}
+{{--                                <span>New</span>--}}
+{{--                                <span class="sale">-20%</span>--}}
+{{--                            </div>--}}
+{{--                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>--}}
+{{--                            <img src="/frontend/img/conan.jpeg" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="product-body">--}}
+{{--                            <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o empty"></i>--}}
+{{--                            </div>--}}
+{{--                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                            <div class="product-btns">--}}
+{{--                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- /Product Single -->--}}
 
-                <!-- Product Single -->
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product product-single">
-                        <div class="product-thumb">
-                            <div class="product-label">
-                                <span>New</span>
-                                <span class="sale">-20%</span>
-                            </div>
-                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                            <img src="/frontend/img/product03.jpg" alt="">
-                        </div>
-                        <div class="product-body">
-                            <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                            </div>
-                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                            <div class="product-btns">
-                                <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Single -->
+{{--                <!-- Product Single -->--}}
+{{--                <div class="col-md-2 col-sm-4 col-xs-6">--}}
+{{--                    <div class="product product-single">--}}
+{{--                        <div class="product-thumb">--}}
+{{--                            <div class="product-label">--}}
+{{--                                <span>New</span>--}}
+{{--                            </div>--}}
+{{--                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>--}}
+{{--                            <img src="/frontend/img/conan.jpeg" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="product-body">--}}
+{{--                            <h3 class="product-price">$32.50</h3>--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o empty"></i>--}}
+{{--                            </div>--}}
+{{--                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                            <div class="product-btns">--}}
+{{--                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- /Product Single -->--}}
 
-                <!-- Product Single -->
-                <div class="col-md-3 col-sm-6 col-xs-6">
-                    <div class="product product-single">
-                        <div class="product-thumb">
-                            <div class="product-label">
-                                <span>New</span>
-                            </div>
-                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                            <img src="/frontend/img/product04.jpg" alt="">
-                        </div>
-                        <div class="product-body">
-                            <h3 class="product-price">$32.50</h3>
-                            <div class="product-rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-o empty"></i>
-                            </div>
-                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                            <div class="product-btns">
-                                <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /Product Single -->
+{{--                <!-- Product Single -->--}}
+{{--                <div class="col-md-2 col-sm-4 col-xs-6">--}}
+{{--                    <div class="product product-single">--}}
+{{--                        <div class="product-thumb">--}}
+{{--                            <div class="product-label">--}}
+{{--                                <span>New</span>--}}
+{{--                            </div>--}}
+{{--                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>--}}
+{{--                            <img src="/frontend/img/conan.jpeg" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="product-body">--}}
+{{--                            <h3 class="product-price">$32.50</h3>--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o empty"></i>--}}
+{{--                            </div>--}}
+{{--                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                            <div class="product-btns">--}}
+{{--                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- /Product Single -->--}}
+
+{{--                <!-- Product Single -->--}}
+{{--                <div class="col-md-2 col-sm-4 col-xs-6">--}}
+{{--                    <div class="product product-single">--}}
+{{--                        <div class="product-thumb">--}}
+{{--                            <div class="product-label">--}}
+{{--                                <span>New</span>--}}
+{{--                            </div>--}}
+{{--                            <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>--}}
+{{--                            <img src="/frontend/img/conan.jpeg" alt="">--}}
+{{--                        </div>--}}
+{{--                        <div class="product-body">--}}
+{{--                            <h3 class="product-price">$32.50</h3>--}}
+{{--                            <div class="product-rating">--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star"></i>--}}
+{{--                                <i class="fa fa-star-o empty"></i>--}}
+{{--                            </div>--}}
+{{--                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>--}}
+{{--                            <div class="product-btns">--}}
+{{--                                <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <!-- /Product Single -->--}}
             </div>
             <!-- /row -->
+
+            <div class="row">
+                <div class="col-12" style="text-align: center">
+                    <button class="" style="" >Xem thêm</button>
+                </div>
+            </div>
 
             <!-- row -->
             <div class="row">
@@ -739,6 +813,7 @@
                 <!-- /Product Single -->
             </div>
             <!-- /row -->
+
 
             <!-- row -->
             <div class="row">

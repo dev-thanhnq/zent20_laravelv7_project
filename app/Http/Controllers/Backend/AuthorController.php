@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreAuthorRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Author;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 //use phpDocumentor\Reflection\DocBlock\Tags\Author;
 
@@ -17,7 +20,10 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = Author::simplePaginate(15);
+        return view('backend.authors.index')->with([
+           'authors' => $authors
+        ]);
     }
 
     /**
@@ -27,7 +33,10 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $user = Auth::user();
+        $author = new Author();
+        if ($user->can('create', $author)) return view('backend.authors.create');
+        else return view('backend.includes.incompetent');
     }
 
     /**
@@ -36,9 +45,14 @@ class AuthorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAuthorRequest $request)
     {
-        //
+        $author = new Author();
+        $author->name = $request->name;
+        $author->slug = \Illuminate\Support\Str::slug($request->get('name'));
+        $author->products_count = 0;
+        $author->save();
+        return redirect()->route('backend.authors.index');
     }
 
     /**
@@ -83,7 +97,10 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-
+        $user = Auth::user();
+        $author = Author::find($id);
+        if ($user->can('delete', $author)) $author->delete();
+        return back();
     }
 
     public function showProducts($author_id)
