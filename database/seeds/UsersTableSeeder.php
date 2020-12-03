@@ -15,15 +15,14 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        for ($i = 1; $i <= 10; $i++) {
             DB::table('users')->insert([
-                'name' => 'Thành viên 1',
-                'email' => 'thanhvien' . $i . '@gmail.com',
+                'name' => 'Nguyễn Quang Thành',
+                'email' => 'tquangds@gmail.com',
                 'phone' => '0342956209',
                 'address' => 'Hoài Đức, Hà Nội',
-                'role' => 1,
-                'password' => bcrypt('123')
+                'role' => 0,
+                'password' => bcrypt('12345678')
             ]);
-        }
+
     }
 }
