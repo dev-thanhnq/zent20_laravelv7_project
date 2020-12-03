@@ -28,39 +28,40 @@
                             <div class="product-view">
                                 <img src="/storage/{{ $product->image }}" alt="">
                             </div>
-                            <div class="product-view">
-                                <img src="/frontend/img/main-product02.jpg" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="/frontend/img/main-product03.jpg" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="/frontend/img/main-product04.jpg" alt="">
-                            </div>
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/main-product02.jpg" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/main-product03.jpg" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/main-product04.jpg" alt="">--}}
+{{--                            </div>--}}
                         </div>
-                        <div id="product-view">
-                            <div class="product-view">
-                                <img src="/frontend/img/thumb-product01.jpg" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="/frontend/img/thumb-product02.jpg" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="/frontend/img/thumb-product03.jpg" alt="">
-                            </div>
-                            <div class="product-view">
-                                <img src="/frontend/img/thumb-product04.jpg" alt="">
-                            </div>
-                        </div>
+{{--                        <div id="product-view">--}}
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/thumb-product01.jpg" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/thumb-product02.jpg" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/thumb-product03.jpg" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="product-view">--}}
+{{--                                <img src="/frontend/img/thumb-product04.jpg" alt="">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <div class="col-md-6">
                         <div class="product-body">
                             <div class="product-label">
-                                <span>New</span>
-                                <span class="sale">-20%</span>
+                                @if($product->discount_percent != 0)
+                                    <span class="sale">-{{ $product->discount_percent }}%</span>
+                                @endif
                             </div>
-                            <h2 class="product-name">Product Name Goes Here</h2>
-                            <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
+                            <h2 class="product-name">{{ $product->name }}</h2>
+                            <h3 class="product-price">{{ $product->sale_price }}@if($product->discount_percent != 0) <del class="product-old-price">{{ $product->origin_price }}</del>@endif</h3>
                             <div>
                                 <div class="product-rating">
                                     <i class="fa fa-star"></i>
@@ -69,38 +70,24 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-o empty"></i>
                                 </div>
-                                <a href="#">3 Review(s) / Add Review</a>
                             </div>
-                            <p><strong>Availability:</strong> In Stock</p>
-                            <p><strong>Brand:</strong> E-SHOP</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <p>
+                                <strong>Trang thái:</strong>
+                                @if($product->status == 0) Tạm khóa
+                                @elseif($product->status == 1) Còn hàng
+                                @elseif($product->status == 2) Hết hàng
+                                @endif
+                            </p>
+                            <p><strong>Tác giả:</strong> {{ $product->author->name }}</p>
+                            <p><strong>Nhà xuất bản:</strong> {{ $product->publishing_company->name }}</p>
+                            <p>{{ $product->content }}</p>
                             <div class="product-options">
-                                <ul class="size-option">
-                                    <li><span class="text-uppercase">Size:</span></li>
-                                    <li class="active"><a href="#">S</a></li>
-                                    <li><a href="#">XL</a></li>
-                                    <li><a href="#">SL</a></li>
-                                </ul>
-                                <ul class="color-option">
-                                    <li><span class="text-uppercase">Color:</span></li>
-                                    <li class="active"><a href="#" style="background-color:#475984;"></a></li>
-                                    <li><a href="#" style="background-color:#8A2454;"></a></li>
-                                    <li><a href="#" style="background-color:#BF6989;"></a></li>
-                                    <li><a href="#" style="background-color:#9A54D8;"></a></li>
-                                </ul>
                             </div>
 
                             <div class="product-btns">
-                                <div class="qty-input">
-                                    <span class="text-uppercase">QTY: </span>
-                                    <input class="input" type="number">
-                                </div>
-                                <a href="{{ route('frontend.cart.add', 1) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                <a href="{{ route('frontend.cart.add', $product->id) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                 <div class="pull-right">
                                     <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
-                                    <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -108,17 +95,10 @@
                     <div class="col-md-12">
                         <div class="product-tab">
                             <ul class="tab-nav">
-                                <li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-                                <li><a data-toggle="tab" href="#tab1">Details</a></li>
-                                <li><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
+                                <li class="active"><a data-toggle="tab" href="#tab2">Reviews (3)</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div id="tab1" class="tab-pane fade in active">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                </div>
-                                <div id="tab2" class="tab-pane fade in">
-
+                                <div id="tab2" class="tab-pane fade in active">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="product-reviews">
@@ -209,7 +189,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <button class="primary-btn">Submit</button>
+                                                <button class="primary-btn"></button>
                                             </form>
                                         </div>
                                     </div>
@@ -235,7 +215,7 @@
                 <!-- section title -->
                 <div class="col-md-12">
                     <div class="section-title">
-                        <h2 class="title">Picked For You</h2>
+                        <h2 class="title">Cùng tác giả</h2>
                     </div>
                 </div>
                 <!-- section title -->

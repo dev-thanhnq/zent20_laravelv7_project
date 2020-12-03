@@ -23,59 +23,31 @@
                                     <th></th>
                                     <th class="text-center">Giá tiền</th>
                                     <th class="text-center">Số lượng</th>
-                                    <th class="text-center">Tổng</th>
+                                    <th class="text-center">Thành tiền</th>
                                     <th class="text-right"></th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($items as $item)
                                 <tr>
-                                    <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
+                                    <td class="thumb"><img src="/storage/{{ $item->option->image }}" alt=""></td>
                                     <td class="details">
-                                        <a href="#">Product Name Goes Here</a>
-                                        <ul>
-                                            <li><span>Size: XL</span></li>
-                                            <li><span>Color: Camelot</span></li>
-                                        </ul>
+                                        <a href="#">{{ $item->name }}</a>
                                     </td>
-                                    <td class="price text-center"><strong>$32.50</strong><br><del class="font-weak"><small>$40.00</small></del></td>
-                                    <td class="qty text-center"><input class="input" type="number" value="1"></td>
-                                    <td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-                                    <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-                                    <td class="details">
-                                        <a href="#">Product Name Goes Here</a>
-                                        <ul>
-                                            <li><span>Size: XL</span></li>
-                                            <li><span>Color: Camelot</span></li>
-                                        </ul>
+                                    <td class="price text-center"><strong>{{ $item->price }}đ</strong><br>
+                                        @if($item->discount_percent != 0)<del class="font-weak"><small>$40.00</small></del>@endif
                                     </td>
-                                    <td class="price text-center"><strong>$32.50</strong></td>
-                                    <td class="qty text-center"><input class="input" type="number" value="1"></td>
-                                    <td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-                                    <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
+                                    <td class="qty text-center"><input class="input" type="number" value="{{ $item->qty }}"></td>
+                                    <td class="total text-center"><strong class="primary-color">{{ $item->price * $item->qty }}đ</strong></td>
+                                    <td class="text-right"><a><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
                                 </tr>
-                                <tr>
-                                    <td class="thumb"><img src="./img/thumb-product01.jpg" alt=""></td>
-                                    <td class="details">
-                                        <a href="#">Product Name Goes Here</a>
-                                        <ul>
-                                            <li><span>Size: XL</span></li>
-                                            <li><span>Color: Camelot</span></li>
-                                        </ul>
-                                    </td>
-                                    <td class="price text-center"><strong>$32.50</strong></td>
-                                    <td class="qty text-center"><input class="input" type="number" value="1"></td>
-                                    <td class="total text-center"><strong class="primary-color">$32.50</strong></td>
-                                    <td class="text-right"><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                                 <tfoot>
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>Tổng tiền</th>
-                                    <th colspan="2" class="total">$97.50</th>
+                                    <th colspan="2" class="total"></th>
                                 </tr>
                                 </tfoot>
                             </table>

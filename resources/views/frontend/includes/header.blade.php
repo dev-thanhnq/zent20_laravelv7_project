@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="shopping-cart-btns">
-                                    <button class="main-btn">Chi tiết</button>
+                                    <a href="{{ route('frontend.cart.index') }}"><button class="main-btn">Chi tiết</button></a>
                                     <button class="primary-btn">Thanh toán <i class="fa fa-arrow-circle-right"></i></button>
                                 </div>
                             </div>

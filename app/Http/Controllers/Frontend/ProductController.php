@@ -47,9 +47,9 @@ class ProductController extends Controller
      */
     public function show($slug)
     {
-        $pruduct = Product::where('slug', $slug)->first();
+        $product = Product::where('slug', $slug)->first();
         return view('frontend.productpage')->with([
-            'product' => $pruduct
+            'product' => $product
         ]);
     }
 

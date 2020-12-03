@@ -25,8 +25,13 @@ class Product extends Model
         return $this->hasMany(Image::class);
     }
 
-    public function authors()
+    public function author()
     {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsTo(Author::class);
+    }
+
+    public function publishing_company()
+    {
+        return $this->belongsTo(Publishing::class);
     }
 }

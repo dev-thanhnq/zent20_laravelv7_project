@@ -13,12 +13,14 @@ class CartController extends Controller
     {
         $items = Cart::content();
 //        dd($items);
-        return view('frontend.cart.list');
+        return view('frontend.cart.list')->with([
+            'items' => $items
+        ]);
     }
     public function add($id)
     {
         $product = Product::find($id);
-        Cart::add($product->id, $product->name, 1, $product->sale_price, 0);
+        Cart::add($product->id, $product->name, 1, $product->sale_price, 0, ['image' => $product->image]);
         return redirect()->route('frontend.cart.index');
     }
 
