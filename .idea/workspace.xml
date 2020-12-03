@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f0c066d-1a64-4a95-8302-5871591a5010" name="Default Changelist" comment="" />
+    <list default="true" id="2f0c066d-1a64-4a95-8302-5871591a5010" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/zent20_project_laravelv7.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/zent20_project_laravelv7.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/cart/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/cart/list.blade.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +36,9 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -118,6 +147,9 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
       <path value="$PROJECT_DIR$/vendor/laravel/ui" />
+      <path value="$PROJECT_DIR$/vendor/bumbummen99/shoppingcart" />
+      <path value="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/dotenv" />
     </include_path>
   </component>
   <component name="ProjectId" id="1joehT1t9qwvXuOEc27yvSSON1U" />
@@ -133,11 +165,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\zent20_project_laravelv7\public\frontend\img" />
+      <recent name="C:\xampp\htdocs\zent20_project_laravelv7\public\backend\dist\img" />
       <recent name="C:\xampp\htdocs\zent20_project_laravelv7\public\backend\auth\register\images" />
       <recent name="C:\xampp\htdocs\zent20_project_laravelv7\public\backend\auth\register" />
       <recent name="C:\xampp\htdocs\zent20_project_laravelv7\public\backend\auth\images" />
-      <recent name="C:\xampp\htdocs\zent20_project_laravelv7\public\backend\auth" />
-      <recent name="C:\xampp\htdocs\zent20_project_laravelv7\resources\views" />
     </key>
   </component>
   <component name="RunManager">
@@ -156,20 +188,94 @@
       <updated>1604474990802</updated>
       <workItem from="1604474991863" duration="5268000" />
       <workItem from="1604495627692" duration="12235000" />
+      <workItem from="1604556264280" duration="5953000" />
+      <workItem from="1604563012687" duration="4809000" />
+      <workItem from="1604573613838" duration="9903000" />
+      <workItem from="1604651667266" duration="2854000" />
+      <workItem from="1604661239591" duration="2732000" />
+      <workItem from="1604756674425" duration="8987000" />
+      <workItem from="1604845429721" duration="2460000" />
+      <workItem from="1604918604248" duration="2494000" />
+      <workItem from="1605007289941" duration="8611000" />
+      <workItem from="1605101583290" duration="6307000" />
+      <workItem from="1605158343546" duration="1422000" />
+      <workItem from="1605451261203" duration="1794000" />
+      <workItem from="1605610473700" duration="7396000" />
+      <workItem from="1605706043150" duration="5068000" />
+      <workItem from="1605766822047" duration="4508000" />
+      <workItem from="1605786185670" duration="7092000" />
+      <workItem from="1606216719401" duration="7071000" />
+      <workItem from="1606301407194" duration="7928000" />
+      <workItem from="1606376251456" duration="3177000" />
+      <workItem from="1606389099485" duration="9157000" />
+      <workItem from="1606463115713" duration="4876000" />
+      <workItem from="1606478356537" duration="5098000" />
+      <workItem from="1606654718135" duration="1587000" />
+      <workItem from="1606662526021" duration="4401000" />
+      <workItem from="1606731612716" duration="3686000" />
+      <workItem from="1606751023038" duration="4793000" />
+      <workItem from="1606803202925" duration="5438000" />
+      <workItem from="1606818902070" duration="7264000" />
+      <workItem from="1606912803399" duration="620000" />
+      <workItem from="1606916589988" duration="9426000" />
+      <workItem from="1606992989323" duration="4766000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1604506380369">
+    <state x="624" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606221257659">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1604506380369" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1604504481926">
+    <state x="624" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606221257659" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1606751813461">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604504481926" />
+    <state x="690" y="275" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606751813461" />
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606999116304">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606999116304" />
+    <state x="682" y="243" key="NewPhpClassDialog" timestamp="1606306401582">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="682" y="243" key="NewPhpClassDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606306401582" />
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1606752145597">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1606752145597" />
+    <state x="667" y="76" width="585" height="888" key="find.popup" timestamp="1606309326655">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="667" y="76" width="585" height="888" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606309326655" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1606754591303">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1606754591303" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/resources/views/backend/products/index.blade.php</url>
+          <line>52</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
