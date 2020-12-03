@@ -26,10 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $categories = Cache::remember('home_categories', 5, function () {
-            $categories = Category::get();
-            return $categories;
-        });
-        View::share('listCategories', $categories);
+//        $categories = Cache::remember('home_categories', 5, function () {
+//            $categories = Category::get();
+//            return $categories;
+//        });
+//        View::share('listCategories', $categories);
     }
 }
