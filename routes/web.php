@@ -33,12 +33,15 @@ Route::group([
         // Quản lý sản phẩm
         Route::group(['prefix' => 'products'], function(){
             Route::get('/', 'ProductController@index')->name('backend.product.index');
-//            Route::get('/get-data', 'ProductController@getData')->name('backend.product.index');
+            Route::get('/get-data', 'ProductController@getData');
             Route::get('/create', [\App\Http\Controllers\Backend\ProductController::class, 'create'])->name('backend.product.create');
             Route::post('/store', [\App\Http\Controllers\Backend\ProductController::class, 'store'])->name('backend.product.store');
             Route::get('/{id?}/edit', 'ProductController@edit')->name('backend.product.edit');
             Route::post('/{id?}/update', 'ProductController@update')->name('backend.product.update');
             Route::delete('/{id}/delete', 'ProductController@destroy')->name('backend.product.destroy');
+            Route::delete('/{id}/force-delete', 'ProductController@hardDelete')->name('backend.product.force-delete');
+            Route::get('/only-trashed', 'ProductController@onlyTrashed')->name('backend.product.only-trashed');
+            Route::get('/{id}/restore', 'ProductController@restore')->name('backend.product.restore');
             Route::get('/{id?}/show', 'ProductController@show')->name('backend.product.show');
         });
         //Quản lý người dùng
@@ -64,6 +67,13 @@ Route::group([
             Route::post('/store', 'AuthorController@store')->name('backend.authors.store');
             Route::delete('/{author}/delete', 'AuthorController@destroy')->name('backend.authors.destroy');
         });
+        //NXB
+        Route::group(['prefix' => 'publishings'], function(){
+            Route::get('/', 'PublishingController@index')->name('backend.publishings.index');
+            Route::get('/create', 'PublishingController@create')->name('backend.publishings.create');
+            Route::post('/store', 'PublishingController@store')->name('backend.publishings.store');
+            Route::delete('/{id}/delete', 'PublishingController@destroy')->name('backend.publishings.destroy');
+        });
     });
 });
 
@@ -79,7 +89,17 @@ Route::group([
     //Giỏ hàng
     Route::get('/cart/list', 'CartController@index')->name('frontend.cart.index');
     Route::get('/cart/add/{id}', 'CartController@add')->name('frontend.cart.add');
-    Route::get('/cart/remove/{id}', 'CartController@remove')->name('frontend.cart.remove');
+    Route::delete('/cart/remove/{id}', 'CartController@remove')->name('frontend.cart.remove');
+    Route::put('/cart/update/{id}', 'CartController@update')->name('frontend.cart.remove');
+    //Checkout
+    Route::get('/checkout', 'CartController@checkout')->name('frontend.checkout');
+});
+//Order
+Route::group([
+    'namespace' => 'Backend',
+    'prefix' => 'order'
+], function () {
+    Route::post('/store', 'OrderController@store')->name('frontend.order.store');
 });
 
 //Auth::routes();

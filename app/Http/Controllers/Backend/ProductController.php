@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use mysql_xdevapi\Exception;
 use Yajra\DataTables\DataTables;
 
 
@@ -25,10 +26,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::simplePaginate(15);
-        return view('backend.products.index')->with([
-            'products' => $products
-        ]);
+        return view('backend.products.index');
     }
 
     /**
@@ -136,7 +134,7 @@ class ProductController extends Controller
                 'publishings' => $publishings
             ]);
         } else {
-            dd('khong');
+            return view('backend.includes.incompetent');
         }
     }
 
@@ -163,7 +161,13 @@ class ProductController extends Controller
         $product->pages_count = '0';
         $product->status = $request->get('status');
         $product->save();
-
+        $publishing = Publishing::find($request->get('publishing_company_id'));
+        $publishing->products_count += 1;
+        dd($publishing);
+        $publishing->save();
+        $author = Author::find($request->get('author_id'));
+        $author->products_count += 1;
+        $author->save();
         return redirect()->route('backend.product.index');
     }
 
@@ -177,39 +181,71 @@ class ProductController extends Controller
     {
         $user = Auth::user();
         $product = Product::find($id);
-        $images = $product->images;
         if ($user->can('delete', $product)) {
-            $product->delete();
-            if (isset($images)) {
-                foreach ($images as $image) {
-                    $image->delete();
+            try {
+                $success = $product->delete();
+                if ($success) {
+                    return response()->json([
+                        'error'=>false,
+                        'message'=>"Gỡ sản phẩm thành công!",
+                    ]);
                 }
-            };
-            return back();
-//            return redirect()->route('backend.product.index');
+            } catch (\Exception $exception) {
+                $message = "Không thành công!";
+                return response()->json([
+                    'error'=>true,
+                    'message'=>$exception->getMessage(),
+                ]);
+            }
         } else {
             return view('backend.includes.incompetent');
         }
     }
 
-    public function showImages($id)
+    public function hardDelete($id)
     {
-        $images = Product::find($id)->images;
-        foreach ($images as $image) {
-            echo $image->name . '<br>';
+        $user = Auth::user();
+        $product = Product::onlyTrashed()->find($id);;
+        if ($user->can('delete', $product)) {
+            $product->forceDelete();
+            return back();
+        } else {
+            return view('backend.includes.incompetent');
         }
     }
 
-//    public function getData()
-//    {
-//        $products = Product::all();
-//
-//        return DataTables::of($products)
-//            ->addColumn('action', function ($product) {
-//                return '<a href="" class="btn btn-primary">Chi tiêt</a>';
-//            })
+    public function onlyTrashed()
+    {
+        $products = Product::onlyTrashed()->get();
+        return view('backend.products.onlyTrashed')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function restore($id)
+    {
+        $products = Product::withTrashed()->find($id)->restore();
+        return back();
+    }
+
+
+    public function getData()
+    {
+        $products = Product::all();
+
+        return DataTables::of($products)
+            ->editColumn('category_id', function ($product) {
+                return $product->category->name;
+            })
+            ->editColumn('image', function ($product) {
+                return '<center><img src="/storage/' .  $product->image . '" style="width: 150px"></center>';
+            })
+            ->addColumn('action', function ($product) {
+                return '<a href="" class="btn btn-primary">Chi tiêt</a>
+                        <button class="btn btn-danger btn-delete" data-id="'. $product->id . '">Gỡ</button>';
+            })
 //            ->addIndexColumn()
-//            ->rawColumns(['action'])
-//            ->make(true);
-//    }
+            ->rawColumns(['action', 'image', 'category_id'])
+            ->make(true);
+    }
 }

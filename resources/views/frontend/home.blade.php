@@ -541,7 +541,7 @@
                             <div class="product-body">
                                 <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
                                 <h4 class="product-price" style="color: #F8694A">{{ $product->sale_price }}đ</h4>
-                                <p>@if($product->discount_percent != 0) <del class="">{{ $product->origin_price }}</del>@endif</p>
+                                <p>@if($product->discount_percent != 0) <del class="">{{ $product->origin_price }}đ</del>@endif</p>
 {{--                                <div class="product-rating">--}}
 {{--                                    <i class="fa fa-star"></i>--}}
 {{--                                    <i class="fa fa-star"></i>--}}

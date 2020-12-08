@@ -22,12 +22,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Danh sách tác giả</h1>
+                <h1 class="m-0 text-dark">Danh sách sản phẩm</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang trủ</a></li>
-                    <li class="breadcrumb-item active">Danh sách tác giả</li>
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Danh sách sản phẩm</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -40,25 +40,37 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table id="productsTable" class="table table-bordered table-striped" style="width: 100%">
+                        <table id="" class="table table-bordered table-striped" style="width: 100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Tên Tác giả</th>
-                                <th>Số sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Thể loại</th>
+                                <th>Ảnh</th>
+                                <th>Giá gốc</th>
+                                <th>Giá bán</th>
+                                <th>Giảm giá(%)</th>
+                                <th>Mô tả</th>
                                 <th>#</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($authors as $author)
+                            @foreach($products as $product)
                                 <tr>
-                                    <td>{{ $author->id }}</td>
-                                    <td>{{ $author->name }}</td>
-                                    <td>{{ count($author->products) }}</td>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td><center><img src="/storage/{{ $product->image }}" alt="" style="width: 150px"></center></td>
+                                    <td>{{ $product->origin_price }}</td>
+                                    <td>{{ $product->sale_price }}</td>
+                                    <td>{{ $product->discount_percent }}</td>
+                                    <td>{!! $product->content !!}</td>
                                     <td>
-                                        <form action="{{ route('backend.authors.destroy', $author->id) }}" method="POST">
+                                        <form action="{{ route('backend.product.force-delete', $product->id) }}" method="POST">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
+                                            <a href="{{ route('backend.product.show', $product->id) }}" class="btn btn-primary">Chi tiêt</a>
+                                            <a href="{{ route('backend.product.restore', $product->id) }}" class="btn btn-success">khôi phục</a>
                                             <button class="btn btn-danger">Xóa</button>
                                         </form>
                                     </td>
@@ -67,7 +79,6 @@
                             </tfoot>
                         </table>
                         <br>
-                        <div style="float: right">{!! $authors->links() !!}</div>
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -77,3 +88,4 @@
     </div>
     </div>
 @endsection
+

@@ -38,15 +38,21 @@
 						Đăng nhập
 					</span>
 
-                <div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+                <div class="wrap-input100 validate-input m-b-23" data-validate = "Email không được bỏ trống">
                     <span class="label-input100">Email</span>
                     <input class="input100" type="text" name="email" placeholder="">
+                    @error('email')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <span class="focus-input100" data-symbol="&#xf108;"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <div class="wrap-input100 validate-input" data-validate="Mật khẩu không được bỏ trống">
                     <span class="label-input100">Mật khẩu</span>
                     <input class="input100" type="password" name="password" placeholder="">
+                    @error('password')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <span class="focus-input100" data-symbol="&#xf190;"></span>
                 </div>
 
@@ -55,7 +61,9 @@
                         Quên mật khẩu?
                     </a>
                 </div>
-
+                @if(session()->has('fail'))
+                    <div class="alert alert-danger">{!! session('fail') !!}</div>
+                @endisset
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
@@ -87,7 +95,7 @@
 
                 <div class="flex-col-c p-t-155">
 
-                    <a href="#" class="txt2">
+                    <a href="{{ route('register.form') }}" class="txt2">
                         Đăng kí tài khoản
                     </a>
                 </div>

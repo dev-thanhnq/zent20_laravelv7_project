@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -52,8 +53,10 @@ class LoginController extends Controller
             if(Auth::user()->role == 1 || Auth::user()->role == 0) {
                 return redirect()->intended('/admin/dashboard');
             } elseif (Auth::user()->role == 2) {
-                return redirect()->intended('frontend.home');
+                return redirect()->intended('/');
             }
+        } else {
+            return redirect()->route('login.form')->with('fail', 'Email hoặc mật khẩu không chính xác');
         }
 
     }

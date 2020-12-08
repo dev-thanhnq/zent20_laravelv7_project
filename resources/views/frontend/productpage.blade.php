@@ -85,7 +85,12 @@
                             </div>
 
                             <div class="product-btns">
-                                <a href="{{ route('frontend.cart.add', $product->id) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                @if($product->status == 1)
+                                <a href="{{ route('frontend.cart.add', $product->id) }}" class="primary-btn add-to-cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Thêm vào giỏ
+                                </a>
+                                @endif
                                 <div class="pull-right">
                                     <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                                 </div>

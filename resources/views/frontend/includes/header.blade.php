@@ -9,7 +9,7 @@
             <div class="pull-left">
                 <!-- Logo -->
                 <div class="header-logo">
-                    <a class="logo" href="#">
+                    <a class="logo" href="{{ route('frontend.home.index') }}">
                         <h1>Book<span style="color: #F8694A">cloud</span></h1>
                     </a>
                 </div>
@@ -28,62 +28,66 @@
             <div class="pull-right">
                 <ul class="header-btns">
                     <!-- Account -->
-                    <li class="header-account dropdown default-dropdown">
+                    <li class="header-account dropdown default-dropdown header-drop">
                         <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-user-o"></i>
                             </div>
                             <strong class="text-uppercase">Tài khoản  <i class="fa fa-caret-down"></i></strong>
                         </div>
-                        <a href="#" class="text-uppercase">Đăng nhập</a>
+                        @if(\Illuminate\Support\Facades\Auth::user())
+                            <a href="#" class="text-uppercase">{{ \Illuminate\Support\Facades\Auth::user()->name }}</a>
+                        @else
+                            <a href="{{ route('login.form') }}" class="text-uppercase">Đăng nhập</a>
+                        @endif
                         <ul class="custom-menu">
                             <li><a href="#"><i class="fa fa-user-o"></i> Cài đặt tài khoản</a></li>
                             <li><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></li>
-                            <li><a href="#"><i class="fa fa-check"></i> Thanh toán</a></li>
-                            <li><a href="#"><i class="fa fa-unlock-alt"></i> Đăng xuất</a></li>
+                            @if(\Illuminate\Support\Facades\Auth::user())
+                                <li><a href="{{ route('logout') }}"><i class="fa fa-unlock-alt"></i> Đăng xuất</a></li>
+                            @else
+                                <li><a href="{{ route('login.form') }}"><i class="fa fa-unlock-alt"></i> Đăng nhập</a></li>
+                            @endif
                         </ul>
                     </li>
                     <!-- /Account -->
 
                     <!-- Cart -->
-                    <li class="header-cart dropdown default-dropdown">
+                    <li class="header-cart dropdown default-dropdown header-drop">
                         <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <div class="header-btns-icon">
                                 <i class="fa fa-shopping-cart"></i>
-                                <span class="qty">3</span>
+                                <span class="qty">{{ Gloudemans\Shoppingcart\Facades\Cart::count() }}</span>
                             </div>
                             <strong class="text-uppercase">Giỏ hàng</strong>
                             <br>
-                            <span>35.20$</span>
+                            <span>{{ Gloudemans\Shoppingcart\Facades\Cart::total() }}đ</span>
                         </a>
                         <div class="custom-menu">
                             <div id="shopping-cart">
                                 <div class="shopping-cart-list">
-                                    <div class="product product-widget">
-                                        <div class="product-thumb">
-                                            <img src="/frontend/img/thumb-product01.jpg" alt="">
+                                    @foreach(Gloudemans\Shoppingcart\Facades\Cart::content() as $item)
+                                        <div class="product product-widget">
+                                            <div class="product-thumb">
+                                                <img src="/storage/{{ $item->options->image }}" alt="">
+                                            </div>
+                                            <div class="product-body">
+                                                <h3 class="product-price">{{ $item->price }}đ <span class="qty">x{{ $item->qty }}</span></h3>
+                                                <h2 class="product-name"><a href="#">{{ $item->name }}</a></h2>
+                                            </div>
                                         </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-                                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                        </div>
-                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
-                                    <div class="product product-widget">
-                                        <div class="product-thumb">
-                                            <img src="/frontend/img/thumb-product01.jpg" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-price">$32.50 <span class="qty">x3</span></h3>
-                                            <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                        </div>
-                                        <button class="cancel-btn"><i class="fa fa-trash"></i></button>
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <div class="shopping-cart-btns">
-                                    <a href="{{ route('frontend.cart.index') }}"><button class="main-btn">Chi tiết</button></a>
-                                    <button class="primary-btn">Thanh toán <i class="fa fa-arrow-circle-right"></i></button>
-                                </div>
+                                @if(Gloudemans\Shoppingcart\Facades\Cart::count() == 0)
+                                    <div class="alert alert-info" role="alert">
+                                        Giỏ hàng của bạn đang rỗng! Hãy quay lại và mua hàng nào!!
+                                    </div>
+                                @else
+                                    <div class="shopping-cart-btns">
+                                        <a href="{{ route('frontend.cart.index') }}"><button class="main-btn">Chi tiết</button></a>
+                                        <button class="primary-btn">Thanh toán <i class="fa fa-arrow-circle-right"></i></button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </li>

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>Bookloud</title>
@@ -59,13 +60,15 @@
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="/frontend/js/jquery.min.js"></script>
+{{--<script src="/frontend/js/jquery.min.js"></script>--}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/frontend/js/bootstrap.min.js"></script>
 <script src="/frontend/js/slick.min.js"></script>
 <script src="/frontend/js/nouislider.min.js"></script>
 <script src="/frontend/js/jquery.zoom.min.js"></script>
 <script src="/frontend/js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="/frontend/js/frontend.js"></script>
 </body>
 
 </html>

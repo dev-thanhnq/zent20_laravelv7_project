@@ -93,7 +93,11 @@ class ProductPolicy
      */
     public function restore(User $user, Product $product)
     {
-        //
+        if ($user->id == $product->user_id || $user->role == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -105,6 +109,10 @@ class ProductPolicy
      */
     public function forceDelete(User $user, Product $product)
     {
-
+        if ($user->id == $product->user_id || $user->role == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

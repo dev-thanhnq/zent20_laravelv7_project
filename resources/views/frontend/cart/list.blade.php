@@ -9,7 +9,7 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <form id="checkout-form" class="clearfix" action="" method="POST">
+                <form id="checkout-form" class="clearfix" action="{{ route('frontend.checkout') }}" method="GET">
                     @csrf
                     <div class="col-md-12">
                         <div class="order-summary clearfix">
@@ -35,11 +35,13 @@
                                         <a href="#">{{ $item->name }}</a>
                                     </td>
                                     <td class="price text-center"><strong>{{ $item->price }}đ</strong><br>
-                                        @if($item->discount_percent != 0)<del class="font-weak"><small>$40.00</small></del>@endif
+                                        @if($item->options->discount_percent != 0)
+                                            <del class="font-weak"><small>{{ $item->options->origin_price }}đ</small></del>
+                                        @endif
                                     </td>
-                                    <td class="qty text-center"><input class="input" type="number" value="{{ $item->qty }}"></td>
+                                    <td class="qty text-center"><input class="input" id="item-qty" type="number" data-id="{{ $item->rowId }}" name="item-qty" value="{{ $item->qty }}"></td>
                                     <td class="total text-center"><strong class="primary-color">{{ $item->price * $item->qty }}đ</strong></td>
-                                    <td class="text-right"><a><button class="main-btn icon-btn"><i class="fa fa-close"></i></button></a></td>
+                                    <td class="text-right"><a href="{{ route('frontend.cart.remove', $item->rowId) }}" class="btn btn-warning"><i class="fa fa-close"></i></a></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -47,7 +49,7 @@
                                 <tr>
                                     <th class="empty" colspan="3"></th>
                                     <th>Tổng tiền</th>
-                                    <th colspan="2" class="total"></th>
+                                    <th colspan="2" class="total">{{ Gloudemans\Shoppingcart\Facades\Cart::total() }} VNĐ</th>
                                 </tr>
                                 </tfoot>
                             </table>
