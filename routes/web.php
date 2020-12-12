@@ -93,6 +93,7 @@ Route::group([
     Route::get('/author/{id}', 'ProductController@author')->name('frontend.product.author');
     Route::get('/category/{id}', 'ProductController@category')->name('frontend.product.category');
     Route::get('/publishing/{id}', 'ProductController@publishing')->name('frontend.product.publishing');
+    Route::post('/search', 'ProductController@search')->name('frontend.product.search');
     //Giỏ hàng
     Route::get('/cart/list', 'CartController@index')->name('frontend.cart.index');
     Route::get('/cart/add/{id}', 'CartController@add')->name('frontend.cart.add');

@@ -137,4 +137,12 @@ class ProductController extends Controller
             'products' => $products
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->orderBy('sold', 'DESC')->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
+    }
 }

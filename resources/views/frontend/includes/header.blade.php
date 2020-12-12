@@ -17,10 +17,10 @@
 
                 <!-- Search -->
                 <div class="header-search" style="">
-                    <form>
-                        <input class="input " type="text" placeholder="Tìm kiếm sản phẩm    ">
-
-                        <button class="search-btn"><i class="fa fa-search"></i></button>
+                    <form method="POST" action="{{ route('frontend.product.search') }}">
+                        @csrf
+                        <input class="input " type="text" placeholder="Tìm kiếm sản phẩm" name="search">
+                        <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <!-- /Search -->
