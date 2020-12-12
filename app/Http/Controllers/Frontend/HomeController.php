@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use RealRashid\SweetAlert\Facades\Alert;
 use function Couchbase\defaultDecoder;
 
 class HomeController extends Controller
@@ -19,9 +20,15 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::limit(6)->get();
+        $products_manga = Product::where('category_id', 4)->orderBy('sold', 'DESC')->limit(6)->get();
+        $products_new = Product::orderBy('created_at', 'DESC')->limit(6)->get();
+        $products_hot = Product::orderBy('sold', 'DESC')->limit(6)->get();
+        $products_rb = Product::inRandomOrder()->limit(6)->get();
         return view('frontend.home')->with([
-            'products' => $products
+            'products_manga' => $products_manga,
+            'products_new' => $products_new,
+            'products_hot' => $products_hot,
+            'products_rb' => $products_rb,
         ]);
     }
 

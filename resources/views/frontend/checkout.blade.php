@@ -18,7 +18,8 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <form id="checkout-form" class="clearfix" action="{{ route('frontend.order.store') }}" method="POST">
+                <form id="checkout-form" class="clearfix" action="{{ route('order.store') }}" method="POST">
+                    @csrf
                     <div class="col-md-6">
                         <div class="billing-details">
                             <div class="section-title">
@@ -60,7 +61,7 @@
                                 <h4 class="title">Phương thức giao hàng</h4>
                             </div>
                             <div class="input-checkbox">
-                                <input type="radio" name="shipping" id="shipping-1" checked>
+                                <input type="radio" name="shipping" id="shipping-1" value="shipping1" checked>
                                 <label for="shipping-1">Free Shiping -  0.00đ</label>
                                 <div class="caption">
                                     <p>
@@ -69,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="input-checkbox">
-                                <input type="radio" name="shipping" id="shipping-2">
+                                <input type="radio" name="shipping" id="shipping-2" value="shipping2">
                                 <label for="shipping-2">Giao hàng nhanh - 30.000đ</label>
                                 <div class="caption">
                                     <p>
@@ -84,11 +85,11 @@
                                 <h4 class="title">Phương thức thanh toán</h4>
                             </div>
                             <div class="input-checkbox">
-                                <input type="radio" name="payments" id="payments-1" checked>
+                                <input type="radio" name="payments" id="payments-1" value="pay1" checked>
                                 <label for="payments-1">Thanh toán khi nhận hàng</label>
                             </div>
                             <div class="input-checkbox">
-                                <input type="radio" name="payments" id="payments-2">
+                                <input type="radio" name="payments" id="payments-2" value="pay2">
                                 <label for="payments-2">Chuyển khoản ngân hàng</label>
                             </div>
                         </div>
@@ -141,7 +142,11 @@
                                 </tfoot>
                             </table>
                             <div class="pull-right">
-                                <button class="primary-btn" type="submit">Xác nhận thanh toán</button>
+                                @if(Gloudemans\Shoppingcart\Facades\Cart::total() == 0)
+                                    <button class="primary-btn" type="submit" disabled>Xác nhận thanh toán</button>
+                                @else
+                                    <button class="primary-btn" type="submit">Xác nhận thanh toán</button>
+                                @endif
                             </div>
                         </div>
                     </div>

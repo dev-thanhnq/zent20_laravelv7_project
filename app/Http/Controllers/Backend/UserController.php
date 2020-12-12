@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Gate;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -23,7 +25,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.index');
+        if (Gate::allows('show-users-list')){
+            $users = User::paginate(15);
+            return view('backend.users.index')->with([
+                'users' => $users
+            ]);
+        }
+
     }
 
     /**
@@ -33,7 +41,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.users.create');
+
     }
 
     /**
@@ -44,7 +52,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -55,7 +63,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('backend.users.detail')->with([
+            'user' => $user
+        ]);
     }
 
     /**
@@ -66,7 +77,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -78,7 +89,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->save();
+        Alert::success('Thành công!','Thông tin của bạn đã được lưu lại');
+        return redirect()->route('backend.user.show', $id);
     }
 
     /**
@@ -92,50 +110,4 @@ class UserController extends Controller
         //
     }
 
-    public function test()
-    {
-//        $user = User::find(1);
-//        dd($user->userInfo->fullname);
-
-//        $user_info = UserInfo::find(1);
-//        $user = $user_info->user;
-//        dd($user);
-
-//        $category = Category::find(1);
-//        $products = $category->products;
-////        dd($products);
-
-//        $product = Product::find(1);
-//        $category = $product->category;
-//        dd($category);
-//        $products = Category::find(1)->products()->where('status', 0)->get();
-//        dd($products);
-
-//        $product = Product::find(2);
-//        $category = Category::find(2);
-//        $productSaved = $category->products()->save($product);
-
-//        $category = Category::find(2);
-//
-//        $product = $category->products()->create([
-//            'name' => 'san pham create',
-//            'slug' => 'san-pham-create',
-//            'origin_price' => '10000',
-//            'sale_price' => '5000',
-//            'discount_percent' => '20',
-//            'content' => 'Noi dung demo',
-//            'author_id' => 0,
-//            'publishing_company_id' => 0,
-//            'pages_count' => 0,
-//            'status' => 0,
-//            'rate' => 0,
-//        ]);
-
-//        $order_id = 1;
-//        $order = Order::find(1);
-//        $product_id = 3;
-//        $order->products()->attach($product_id);
-
-        echo url()->previous();
-    }
 }

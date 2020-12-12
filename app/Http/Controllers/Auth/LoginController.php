@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -63,6 +64,7 @@ class LoginController extends Controller
 
     public function logout() {
         Auth::logout();
-        return view('backend.auth.login');
+        Cart::destroy();
+        return redirect()->route('frontend.home.index');
     }
 }

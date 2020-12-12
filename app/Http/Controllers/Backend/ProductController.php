@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
 use mysql_xdevapi\Exception;
 use Yajra\DataTables\DataTables;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ProductController extends Controller
@@ -93,7 +94,8 @@ class ProductController extends Controller
                 $image->save();
             }
         }
-        return redirect()->route('backend.product.index');
+        Alert::success('Tạo mới thành công!', 'Sản phẩm đã được thêm vào hệ thống!');
+        return redirect()->route('backend.product.create');
     }
 
     /**
@@ -107,7 +109,9 @@ class ProductController extends Controller
         $user = Auth::user();
         $product = Product::find($id);
         if ($user->can('view', $product)) {
-            dd($product);
+            return view('backend.products.detail')->with([
+                'product' => $product
+            ]);
         } else {
             return view('backend.includes.incompetent');
         }
@@ -168,6 +172,7 @@ class ProductController extends Controller
         $author = Author::find($request->get('author_id'));
         $author->products_count += 1;
         $author->save();
+        Alert::success('Thành công!', 'Sản phẩm đã được cập nhật');
         return redirect()->route('backend.product.index');
     }
 
@@ -210,7 +215,8 @@ class ProductController extends Controller
             $product->forceDelete();
             return back();
         } else {
-            return view('backend.includes.incompetent');
+            Alert::error('Thất bại!', 'Bạn không có quyền thực hiện thao tác này!');
+            return back();
         }
     }
 
@@ -232,7 +238,6 @@ class ProductController extends Controller
     public function getData()
     {
         $products = Product::all();
-
         return DataTables::of($products)
             ->editColumn('category_id', function ($product) {
                 return $product->category->name;
@@ -240,12 +245,16 @@ class ProductController extends Controller
             ->editColumn('image', function ($product) {
                 return '<center><img src="/storage/' .  $product->image . '" style="width: 150px"></center>';
             })
+            ->editColumn('name', function ($product) {
+                return '<a href="http://thanhdev.com:8080/product-page/' . $product->slug . '">' . $product->name . '</a>';
+            })
             ->addColumn('action', function ($product) {
-                return '<a href="" class="btn btn-primary">Chi tiêt</a>
+                return '<a href="http://thanhdev.com:8080/admin/products/'. $product->id .'/show" class="btn btn-primary">Chi tiêt</a>
+                        <a href="http://thanhdev.com:8080/admin/products/'. $product->id .'/edit" class="btn btn-warning">Sửa</a>
                         <button class="btn btn-danger btn-delete" data-id="'. $product->id . '">Gỡ</button>';
             })
 //            ->addIndexColumn()
-            ->rawColumns(['action', 'image', 'category_id'])
+            ->rawColumns(['action', 'image', 'category_id', 'name'])
             ->make(true);
     }
 }

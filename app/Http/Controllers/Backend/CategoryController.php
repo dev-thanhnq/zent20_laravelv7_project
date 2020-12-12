@@ -9,6 +9,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use phpDocumentor\Reflection\DocBlock\Tags\Version;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -52,6 +53,7 @@ class CategoryController extends Controller
         $category->parent_id = $request->get('parent_id');
         $category->depth = 1;
         $category->save();
+        Alert::success('Thành công!', 'Thể loại mới đã được thêm');
         return redirect()->route('backend.category.index');
     }
 
@@ -98,6 +100,7 @@ class CategoryController extends Controller
         $category->parent_id = $request->get('parent_id');
         $category->depth = 1;
         $category->save();
+        Alert::success('Thành công!', 'Cập nhật thông tin thành công!');
         return redirect()->route('backend.category.index');
     }
 

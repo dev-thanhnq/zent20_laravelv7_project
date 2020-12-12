@@ -44,7 +44,12 @@
                             <li><a href="#"><i class="fa fa-user-o"></i> Cài đặt tài khoản</a></li>
                             <li><a href="#"><i class="fa fa-heart-o"></i> Yêu thích</a></li>
                             @if(\Illuminate\Support\Facades\Auth::user())
-                                <li><a href="{{ route('logout') }}"><i class="fa fa-unlock-alt"></i> Đăng xuất</a></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <a><button class="dropdown-item"><i class="btn fa fa-sign-out" aria-hidden="true"></i> Đăng xuất</button></a>
+                                    </form>
+                                </li>
                             @else
                                 <li><a href="{{ route('login.form') }}"><i class="fa fa-unlock-alt"></i> Đăng nhập</a></li>
                             @endif

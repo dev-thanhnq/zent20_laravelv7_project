@@ -133,7 +133,6 @@
                                     <option value="0" @if($product->status == 0) selected @endif>Còn hàng</option>
                                     <option value="1" @if($product->status == 1) selected @endif>Hết hàng</option>
                                     <option value="2" @if($product->status == 2) selected @endif>Dừng bán</option>
-                                    <option value="3" @if($product->status == 3) selected @endif>Đang nhập</option>
                                 </select>
                                 @error('status')
                                 <p style="color: red">*{{ $message }}</p>

@@ -36,4 +36,9 @@ class Product extends Model
     {
         return $this->belongsTo(Publishing::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

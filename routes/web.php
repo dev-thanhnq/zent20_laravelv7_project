@@ -46,9 +46,10 @@ Route::group([
         });
         //Quản lý người dùng
         Route::group(['prefix' => 'users'], function(){
-            Route::get('/', [\App\Http\Controllers\Backend\UserController::class, 'index'])->name('backend.user.index');
-            Route::get('/create', [\App\Http\Controllers\Backend\UserController::class, 'create'])->name('backend.user.create');
-            Route::get('/test', [\App\Http\Controllers\Backend\UserController::class, 'test'])->name('backend.user.test');
+            Route::get('/', 'UserController@index')->name('backend.user.index');
+            Route::get('/create', 'UserController@create')->name('backend.user.create');
+            Route::get('/{id}/show', 'UserController@show')->name('backend.user.show');
+            Route::post('/{id}/update', 'UserController@update')->name('backend.user.update');
         });
         //Quản lí thể loại
         Route::group(['prefix' => 'categories'], function(){
@@ -86,20 +87,36 @@ Route::group([
     Route::get('/product-page/{slug}', 'ProductController@show')->name('frontend.product-page.index');
     //Danh sach san pham
     Route::get('/products', 'ProductController@index')->name('frontend.product.index');
+    Route::get('/hot', 'ProductController@hot')->name('frontend.product.hot');
+    Route::get('/sale', 'ProductController@sale')->name('frontend.product.sale');
+    Route::get('/new', 'ProductController@new')->name('frontend.product.new');
+    Route::get('/author/{id}', 'ProductController@author')->name('frontend.product.author');
+    Route::get('/category/{id}', 'ProductController@category')->name('frontend.product.category');
+    Route::get('/publishing/{id}', 'ProductController@publishing')->name('frontend.product.publishing');
     //Giỏ hàng
     Route::get('/cart/list', 'CartController@index')->name('frontend.cart.index');
     Route::get('/cart/add/{id}', 'CartController@add')->name('frontend.cart.add');
     Route::delete('/cart/remove/{id}', 'CartController@remove')->name('frontend.cart.remove');
-    Route::put('/cart/update/{id}', 'CartController@update')->name('frontend.cart.remove');
+    Route::put('/cart/update/{id}', 'CartController@update')->name('frontend.cart.update');
     //Checkout
     Route::get('/checkout', 'CartController@checkout')->name('frontend.checkout');
 });
 //Order
 Route::group([
     'namespace' => 'Backend',
-    'prefix' => 'order'
+    'prefix' => 'orders'
 ], function () {
-    Route::post('/store', 'OrderController@store')->name('frontend.order.store');
+    Route::get('/', 'OrderController@index')->name('order.index')->middleware('auth_admin');
+    Route::get('/non-accept', 'OrderController@nonAcceptList')->name('order.nonAccept')->middleware('auth_admin');
+    Route::get('/success', 'OrderController@successList')->name('order.successList')->middleware('auth_admin');
+    Route::get('/get-data', 'OrderController@getData');
+    Route::get('/get-success', 'OrderController@getSuccess');
+    Route::get('/get-non-accept', 'OrderController@nonAccept');
+    Route::post('/store', 'OrderController@store')->name('order.store');
+    Route::put('/accept/{id}', 'OrderController@accept')->name('order.accept')->middleware('auth_admin');
+    Route::delete('/delete/{id}', 'OrderController@destroy')->name('order.destroy')->middleware('auth_admin');
+    Route::put('/success/{id}', 'OrderController@success')->name('order.success')->middleware('auth_admin');
+    Route::get('/{id}/show', 'OrderController@show')->name('order.show')->middleware('auth_admin');
 });
 
 //Auth::routes();

@@ -45,9 +45,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
+                            <a href="{{ route('backend.product.only-trashed') }}" class="nav-link">
+                                <i class="far fa-trash-restore nav-icon"></i>
+                                <p>Danh sách đã gỡ</p>
                             </a>
                         </li>
                     </ul>
@@ -73,12 +73,6 @@
                                 <p> Tạo thể loại mới</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
-                            </a>
-                        </li>
                     </ul>
                 </li>
                 <li class="nav-item has-treeview menu-open">
@@ -100,12 +94,6 @@
                             <a href="{{ route('backend.authors.create') }}" class="nav-link">
                                 <i class="fa fa-plus-circle nav-icon"></i>
                                 <p>Thêm mới tác giả</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
                             </a>
                         </li>
                     </ul>
@@ -131,14 +119,56 @@
                                 <p>Thêm mới NXB</p>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Quản lí đơn hàng
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="./index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Dashboard v3</p>
+                            <a href="{{ route('order.index') }}" class="nav-link">
+                                <i class="fa fa-check-circle-o nav-icon" aria-hidden="true"></i>
+                                <p> Đơn đã xác nhận</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('order.nonAccept') }}" class="nav-link">
+                                <i class="fa fa-clock-o nav-icon" aria-hidden="true"></i>
+                                <p>Đơn chờ phê duyệt</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('order.successList') }}" class="nav-link">
+                                <i class="fa fa-clock-o nav-icon" aria-hidden="true"></i>
+                                <p>Đơn hàng đã giao</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                @if(\Illuminate\Support\Facades\Auth::user()->role == 0)
+                <li class="nav-item has-treeview menu-open">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Quản lí thành viên
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('backend.user.index') }}" class="nav-link">
+                                <i class="fa fa-user nav-icon" aria-hidden="true"></i>
+                                <p> Tất cả thành viên</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

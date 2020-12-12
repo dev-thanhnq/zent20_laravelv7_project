@@ -1,22 +1,6 @@
 @extends('backend.layouts.master')
 @section('script')
-    {{--<script>--}}
-    {{--    $(document).ready(function () {--}}
-    {{--        $('#productsTable').DataTable({--}}
-    {{--            dom: 'lifrtp',--}}
-    {{--            processing: true,--}}
-    {{--            serverSide: true,--}}
-    {{--            ajax: '/admin/products/get-data',--}}
-    {{--            columns: [--}}
-    {{--                { data: 'DT_RowIndex', searchable: false},--}}
-    {{--                { data: 'name', name: 'product_name', searchable: true},--}}
-    {{--                { data: 'category_id', name: 'category_name'},--}}
-    {{--                { data: 'content', name: 'product_content'},--}}
-    {{--                { data: 'action', name: 'product_action'}--}}
-    {{--            ]--}}
-    {{--        });--}}
-    {{--    });--}}
-    {{--</script>--}}
+
 @endsection
 @section('header-content')
     <div class="container-fluid">
@@ -27,7 +11,7 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+                    <li class="breadcrumb-item active">Sản phẩm đã gớ</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->

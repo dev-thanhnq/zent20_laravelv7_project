@@ -15,7 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('frontend.products');
+        $products = Product::orderBy('created_at', 'DESC')->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
     }
 
     /**
@@ -85,5 +88,53 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function author($id)
+    {
+        $products = Product::where('author_id', $id)->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function category($id)
+    {
+        $products = Product::where('category_id', $id)->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function hot()
+    {
+        $products = Product::orderBy('sold', 'DESC')->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function sale()
+    {
+        $products = Product::where('discount_percent', '>', 0)->orderBy('sold', 'DESC')->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function new()
+    {
+        $products = Product::orderBy('created_at', 'DESC')->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
+    }
+
+    public function publishing($id)
+    {
+        $products = Product::where('publishing_company_id', $id)->orderBy('sold', 'DESC')->paginate(12);
+        return view('frontend.products')->with([
+            'products' => $products
+        ]);
     }
 }

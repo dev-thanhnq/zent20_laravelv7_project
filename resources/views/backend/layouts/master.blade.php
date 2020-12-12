@@ -10,7 +10,7 @@
     <!-- Font Awesome -->
     <link rel="icon" href="/backend/dist/img/book-icon.png">
     <link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bbootstrap 4 -->
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="/backend/dist/css/backend.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -68,7 +69,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+@include('sweetalert::alert')
 <!-- jQuery -->
 <script src="/backend/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -106,8 +107,9 @@
 <script src="/backend/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/backend/dist/js/backend.js"></script>
-
+{{--<script src="/backend/dist/js/backend2.js"></script>--}}
 @yield('script')
 </body>
 </html>

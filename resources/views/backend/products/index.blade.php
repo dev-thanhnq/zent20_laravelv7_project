@@ -54,31 +54,8 @@
                                 <th>#</th>
                             </tr>
                             </thead>
-                            <tbody>
-{{--                            @foreach($products as $product)--}}
-{{--                                <tr>--}}
-{{--                                    <td>{{ $product->id }}</td>--}}
-{{--                                    <td>{{ $product->name }}</td>--}}
-{{--                                    <td>{{ $product->category->name }}</td>--}}
-{{--                                    <td><center><img src="/storage/{{ $product->image }}" alt="" style="width: 150px"></center></td>--}}
-{{--                                    <td>{{ $product->origin_price }}</td>--}}
-{{--                                    <td>{{ $product->sale_price }}</td>--}}
-{{--                                    <td>{{ $product->discount_percent }}</td>--}}
-{{--                                    <td>{!! $product->content !!}</td>--}}
-{{--                                    <td>--}}
-{{--                                        <form action="{{ route('backend.product.destroy', $product->id) }}" method="POST">--}}
-{{--                                            {{ csrf_field() }}--}}
-{{--                                            {{ method_field('DELETE') }}--}}
-{{--                                            <a href="{{ route('backend.product.show', $product->id) }}" class="btn btn-primary">Chi tiêt</a>--}}
-{{--                                            <button class="btn btn-danger">Gỡ</button>--}}
-{{--                                        </form>--}}
-{{--                                    </td>--}}
-{{--                                </tr>--}}
-{{--                            @endforeach--}}
-                            </tfoot>
                         </table>
                         <br>
-{{--                        <div style="float: right">{!! $products->links() !!}</div>--}}
                     </div>
                     <!-- /.card-body -->
                 </div>

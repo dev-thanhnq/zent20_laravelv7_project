@@ -13,6 +13,16 @@ class User extends Authenticatable
     use Notifiable,
         SoftDeletes;
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

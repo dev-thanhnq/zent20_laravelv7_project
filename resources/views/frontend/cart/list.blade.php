@@ -9,9 +9,9 @@
         <div class="container">
             <!-- row -->
             <div class="row">
-                <form id="checkout-form" class="clearfix" action="{{ route('frontend.checkout') }}" method="GET">
+                <form id="cart-list" class="clearfix" action="{{ route('frontend.checkout') }}" method="GET">
                     @csrf
-                    <div class="col-md-12">
+                    <div class="col-md-12" id="checkout-form">
                         <div class="order-summary clearfix">
                             <div class="section-title">
                                 <h3 class="title">Thông tin giỏ hàng</h3>
@@ -39,9 +39,15 @@
                                             <del class="font-weak"><small>{{ $item->options->origin_price }}đ</small></del>
                                         @endif
                                     </td>
-                                    <td class="qty text-center"><input class="input" id="item-qty" type="number" data-id="{{ $item->rowId }}" name="item-qty" value="{{ $item->qty }}"></td>
+                                    <td class="qty text-center"><input class="input item-qty" type="number" data-id="{{ $item->rowId }}" name="item-qty" value="{{ $item->qty }}"></td>
                                     <td class="total text-center"><strong class="primary-color">{{ $item->price * $item->qty }}đ</strong></td>
-                                    <td class="text-right"><a href="{{ route('frontend.cart.remove', $item->rowId) }}" class="btn btn-warning"><i class="fa fa-close"></i></a></td>
+                                    <td class="text-right">
+                                        <form action="{{ route('frontend.cart.remove', $item->rowId) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger"><i class="fa fa-close"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                                 </tbody>

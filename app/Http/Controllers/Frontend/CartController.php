@@ -27,14 +27,14 @@ class CartController extends Controller
         return redirect()->route('frontend.cart.index');
     }
 
-    public function update($id)
+    public function update(Request $data, $id)
     {
         try {
-            $success =  Cart::update($id, $qty);
-            if($success){
+            $success =  Cart::update($id, $data->qty);
+            if ($success) {
                 return response()->json([
                     'error'=>false,
-                    'message'=>"Cập nhật thành công",
+                    'message'=>"Cập nhật thành công!",
                 ]);
             }
         }catch (\Exception $exception){

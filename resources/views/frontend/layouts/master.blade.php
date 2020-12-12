@@ -58,9 +58,8 @@
 <!-- FOOTER -->
 @include('frontend.includes.footer')
 <!-- /FOOTER -->
-
+@include('sweetalert::alert')
 <!-- jQuery Plugins -->
-{{--<script src="/frontend/js/jquery.min.js"></script>--}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/frontend/js/bootstrap.min.js"></script>
 <script src="/frontend/js/slick.min.js"></script>
@@ -68,6 +67,7 @@
 <script src="/frontend/js/jquery.zoom.min.js"></script>
 <script src="/frontend/js/main.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/frontend/js/frontend.js"></script>
 </body>
 

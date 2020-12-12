@@ -40,7 +40,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <table id="productsTable" class="table table-bordered table-striped" style="width: 100%">
+                        <table id="" class="table table-bordered table-striped" style="width: 100%">
                             <thead>
                             <tr>
                                 <th>ID</th>
