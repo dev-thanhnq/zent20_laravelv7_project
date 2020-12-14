@@ -74,7 +74,7 @@
                                     @foreach(Gloudemans\Shoppingcart\Facades\Cart::content() as $item)
                                         <div class="product product-widget">
                                             <div class="product-thumb">
-                                                <img src="/storage/{{ $item->options->image }}" alt="">
+                                                <img src="/{{ $item->options->image }}" alt="">
                                             </div>
                                             <div class="product-body">
                                                 <h3 class="product-price">{{ $item->price }}đ <span class="qty">x{{ $item->qty }}</span></h3>

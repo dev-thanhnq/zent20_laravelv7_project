@@ -243,7 +243,7 @@ class ProductController extends Controller
                 return $product->category->name;
             })
             ->editColumn('image', function ($product) {
-                return '<center><img src="' .  $product->image . '" style="width: 150px"></center>';
+                return '<center><img src="/' .  $product->image . '" style="width: 150px"></center>';
             })
             ->editColumn('name', function ($product) {
                 return '<a href="http://thanhdev.com:8080/product-page/' . $product->slug . '">' . $product->name . '</a>';

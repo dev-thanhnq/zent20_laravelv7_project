@@ -121,7 +121,7 @@
                                             @endif
                                         </div>
                                         <a href="{{ route('frontend.product-page.index', $product->slug) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Xem</a>
-                                        <img src="{{ $product->image }}" alt="">
+                                        <img src="/{{ $product->image }}" alt="">
                                     </div>
                                     <div class="product-body">
                                         <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
@@ -177,7 +177,7 @@
                                     @endif
                                 </div>
                                 <a href="{{ route('frontend.product-page.index', $product->slug) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Xem</a>
-                                <img src="{{ $product->image }}" alt="">
+                                <img src="/{{ $product->image }}" alt="">
                             </div>
                             <div class="product-body">
                                 <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
@@ -216,7 +216,7 @@
                                     @endif
                                 </div>
                                 <a href="{{ route('frontend.product-page.index', $product->slug) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Xem</a>
-                                <img src="{{ $product->image }}" alt="">
+                                <img src="/{{ $product->image }}" alt="">
                             </div>
                             <div class="product-body">
                                 <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
@@ -258,7 +258,7 @@
                                     @endif
                                 </div>
                                 <a href="{{ route('frontend.product-page.index', $product->slug) }}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Xem</a>
-                                <img src="{{ $product->image }}" alt="">
+                                <img src="/{{ $product->image }}" alt="">
                             </div>
                             <div class="product-body">
                                 <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
