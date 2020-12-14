@@ -51,7 +51,7 @@
                             <li><a href="{{ route('frontend.product.author', 12) }}">Oda Eiichiro</a></li>
                             <li><a href="{{ route('frontend.product.author', 13) }}">Aoyama Ghoso</a></li>
                             <li><a href="{{ route('frontend.product.author', 14) }}">Nguyễn Nhật Ánh</a></li>
-                            <li><a href="{{ route('frontend.product.author', 15) }}">Nuyễn Quang Thành</a></li>
+                            <li><a href="{{ route('frontend.product.author', 15) }}">Nguyễn Quang Thành</a></li>
                         </ul>
                     </div>
                     <!-- /aside widget -->
@@ -114,7 +114,7 @@
                                                     @endif
                                                 </div>
                                                 <a href="{{ route('frontend.product-page.index', $product->slug) }}"><button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Xem</button></a>
-                                                <img src="/storage/{{ $product->image }}" alt="">
+                                                <img src="{{ $product->image }}" alt="">
                                             </div>
                                             <div class="product-body">
                                                 <h3 class="product-price">{{ $product->sale_price }} @if($product->discount_percent != 0) <del class="product-old-price">{{ $product->origin_price }}</del>@endif</h3>

@@ -30,7 +30,7 @@
                                 <tbody>
                                 @foreach($items as $item)
                                 <tr>
-                                    <td class="thumb"><img src="/storage/{{ $item->options->image }}" alt="" style="width: 200px"></td>
+                                    <td class="thumb"><img src="{{ $item->options->image }}" alt="" style="width: 200px"></td>
                                     <td class="details">
                                         <a href="#">{{ $item->name }}</a>
                                     </td>

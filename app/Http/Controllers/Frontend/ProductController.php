@@ -140,7 +140,12 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $products = Product::where('name', 'LIKE', '%' . $request->search . '%')->orderBy('sold', 'DESC')->paginate(12);
+        return redirect()->route('frontend.product.result', $request->search);
+    }
+
+    public function result($key)
+    {
+        $products = Product::where('name', 'LIKE', '%' . $key . '%')->orderBy('sold', 'DESC')->paginate(12);
         return view('frontend.products')->with([
             'products' => $products
         ]);
