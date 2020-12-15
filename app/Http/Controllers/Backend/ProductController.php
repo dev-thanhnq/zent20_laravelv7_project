@@ -237,7 +237,7 @@ class ProductController extends Controller
 
     public function getData()
     {
-        $products = Product::orderBy('create_at', 'DESC')->get();
+        $products = Product::orderBy('created_at', 'DESC')->get();
         return DataTables::of($products)
             ->editColumn('category_id', function ($product) {
                 return $product->category->name;
