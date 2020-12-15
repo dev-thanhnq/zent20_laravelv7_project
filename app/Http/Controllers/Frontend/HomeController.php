@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $products_manga = Product::where('category_id', 4)->orderBy('sold', 'DESC')->limit(6)->get();
+        $products_manga = Product::where('name', 'Truyện tranh')->orderBy('sold', 'DESC')->limit(6)->get();
         $products_new = Product::orderBy('created_at', 'DESC')->limit(6)->get();
         $products_hot = Product::orderBy('sold', 'DESC')->limit(6)->get();
         $products_rb = Product::inRandomOrder()->limit(6)->get();
