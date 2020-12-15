@@ -25,9 +25,8 @@
                         <h3 class="aside-title">Nhà xuất bản:</h3>
                         <ul class="list-links">
                             <li><a href="{{ route('frontend.product.publishing', 1) }}">Kim Đồng</a></li>
-                            <li><a href="{{ route('frontend.product.publishing', 2) }}">Giáo dục</a></li>
-                            <li><a href="{{ route('frontend.product.publishing', 3) }}">Nhã Nam</a></li>
-                            <li><a href="{{ route('frontend.product.publishing', 6) }}">Thời đại</a></li>
+                            <li><a href="{{ route('frontend.product.publishing', 2) }}">Nhã Nam</a></li>
+                            <li><a href="{{ route('frontend.product.publishing', 3) }}">Đại học sư phạm</a></li>
                         </ul>
                     </div>
                     <!-- /aside widget -->
@@ -48,10 +47,10 @@
                     <div class="aside">
                         <h3 class="aside-title">Top tác giả</h3>
                         <ul class="list-links">
-                            <li><a href="{{ route('frontend.product.author', 12) }}">Oda Eiichiro</a></li>
-                            <li><a href="{{ route('frontend.product.author', 13) }}">Aoyama Ghoso</a></li>
-                            <li><a href="{{ route('frontend.product.author', 14) }}">Nguyễn Nhật Ánh</a></li>
-                            <li><a href="{{ route('frontend.product.author', 15) }}">Nguyễn Quang Thành</a></li>
+                            <li><a href="{{ route('frontend.product.author', 2) }}">Oda Eiichiro</a></li>
+                            <li><a href="{{ route('frontend.product.author', 1) }}">Aoyama Ghoso</a></li>
+                            <li><a href="{{ route('frontend.product.author', 3) }}">Nguyễn Nhật Ánh</a></li>
+                            <li><a href="{{ route('frontend.product.author', 4) }}">Lê Bích</a></li>
                         </ul>
                     </div>
                     <!-- /aside widget -->
@@ -60,10 +59,10 @@
                     <div class="aside">
                         <h3 class="aside-title">Thể loại bán chạy</h3>
                         <ul class="list-links">
-                            <li><a href="{{ route('frontend.product.category', 4) }}">Truyện tranh</a></li>
-                            <li><a href="{{ route('frontend.product.category', 3) }}">Trinh thám</a></li>
-                            <li><a href="{{ route('frontend.product.category', 6) }}">Ngôn tình</a></li>
-                            <li><a href="{{ route('frontend.product.category', 1) }}">Văn học</a></li>
+                            <li><a href="{{ route('frontend.product.category', 2) }}">Truyện tranh</a></li>
+                            <li><a href="{{ route('frontend.product.category', 1) }}">Trinh thám</a></li>
+                            <li><a href="{{ route('frontend.product.category', 3) }}">Văn học</a></li>
+                            <li><a href="{{ route('frontend.product.category', 4) }}">Tiểu thuyết</a></li>
                         </ul>
                     </div>
                     <!-- /aside widget -->
